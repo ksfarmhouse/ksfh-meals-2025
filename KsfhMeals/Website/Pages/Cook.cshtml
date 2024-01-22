@@ -2,3 +2,44 @@
 @model Website.Pages.CookModel
 @{
 }
+<h3>Cook</h3>
+
+<form method="post">
+	<table>
+		<tr>
+			<td>
+				<button type="submit" name="DaySelect" value="M">Monday</button>
+			</td>
+			<td>
+				<button type="submit" name="DaySelect" value="T">Tuesday</button>
+			</td>
+			<td>
+				<button type="submit" name="DaySelect" value="W">Wednesday</button>
+			</td>
+			<td>
+				<button type="submit" name="DaySelect" value="U">Thursday</button>
+			</td>
+			<td>
+				<button type="submit" name="DaySelect" value="F">Friday</button>
+			</td>
+		</tr>
+	</table>
+</form>
+
+@if(Model.ButtonHit == 1)
+{
+	
+	<h3>Lunch</h3>
+	<div>
+		<p>Set for @Model.LunchCookCount Members</p>
+		<p>@Model.LunchTableCount Tables</p>
+	</div>
+
+	<h3>Dinner</h3>
+	<div>
+		<p>Crew is factored out and Mom T is accounted for</p>
+		<p>Set for @Model.DinnerCookCount Members</p>
+		<p>@Model.DinnerTableCount Tables</p>
+	</div>
+
+}

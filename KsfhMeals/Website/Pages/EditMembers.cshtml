@@ -1,0 +1,85 @@
+﻿@page
+@model Website.Pages.EditMembersModel
+@{
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+	<div class="container">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+				aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+			<ul class="navbar-nav flex-grow-1">
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-page="/Admin">Edit Menu</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-page="/EditMembers">Edit Members</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-page="/PermaSignUp">Reset Meals</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<form method="post" asp-page-handler="New">
+	<div id="AddMember">
+		<table>
+			<thead>
+				<tr>
+					<th>Add Member</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<input type="text" name="First" placeholder="First Name" required />
+					</td>
+					<td>
+						<input type="text" name="Last" placeholder="Last Name" required />
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input type="text" name="ID" placeholder="ID" required />
+					</td>
+					<td>
+						<select asp-for="SelectedStatus" asp-items="Model.Items"></select>
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input type="submit" value="Add Member" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</form>
+<form asp-page-handler ="Edit">
+	<input type="submit" value="Update Members"  />
+	<table>
+		<tbody>
+		@foreach (Data.Member m in Model.AllMembers)
+		{
+			<tr>
+				<td>@m.LastName</td>
+				<td>@m.FirstName</td>
+				<td>@m.ID</td>
+				<td>
+								
+					<select asp-for="SelectedEditStatus" name=@Model.ComboBoxNames[Model.Index] asp-items=@Model.GetOtherStatus(m.HouseStatus);></select>
+								
+				</td>
+				<td>
+					<button type="submit" asp-page-handler="Remove" name ="RemoveMember" value="@m.ID.ToString()">Remove</button>
+				</td>
+				</tr>
+				Model.Index++;
+			}
+		</tbody>
+	</table>
+</form>

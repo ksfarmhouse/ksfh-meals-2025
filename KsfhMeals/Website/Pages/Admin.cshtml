@@ -1,0 +1,79 @@
+﻿@page
+@model Website.Pages.AdminModel
+@{
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin">Edit Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/EditMembers">Edit Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/PermaSignUp">Reset Meals</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<form method="post">
+    <div id="MenuEdit">
+        <table class="MenuTable" border="1">
+            <thead>
+                <tr>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" name="ML" placeholder="Lunch" required />
+                    </td>
+                    <td>
+                        <input type="text" name="TL" placeholder="Lunch" required />
+                    </td>
+                    <td>
+                        <input type="text" name="WL" placeholder="Lunch" required />
+                    </td>
+                    <td>
+                        <input type="text" name="UL" placeholder="Lunch" required />
+                    </td>
+                    <td>
+                        <input type="text" name="FL" placeholder="Lunch" required />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" name="MD" placeholder="Dinner" required />
+                    </td>
+                    <td>
+                        <input type="text" name="TD" placeholder="Dinner" required />
+                    </td>
+                    <td>
+                        <input type="text" name="WD" placeholder="Dinner" required />
+                    </td>
+                    <td>
+                        <input type="text" name="UD" placeholder="Dinner" required />
+                    </td>
+                    <td>
+                        <input type="text" name="FD" placeholder="Dinner" required />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="submit" value="Save" />
+    </div>
+</form>

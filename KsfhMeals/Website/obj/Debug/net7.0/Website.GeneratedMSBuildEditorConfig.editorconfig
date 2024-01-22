@@ -1,0 +1,85 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Website
+build_property.RootNamespace = Website
+build_property.ProjectDir = C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Website\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Website
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Authorize.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aG9yaXplLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Cook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29vay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/EditMembers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdE1lbWJlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/LatePlates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGF0ZVBsYXRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/MealSignUps.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVhbFNpZ25VcHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/PermaSignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVybWFTaWduVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/ResetMeals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZXRNZWFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Treasurer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJlYXN1cmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/ViewYourMeals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld1lvdXJNZWFscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tyler/source/repos/ksfh-meals-2024/KsfhMeals/Website/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-y1m2c1ijh3

@@ -2,3 +2,117 @@
 @model Website.Pages.LatePlatesModel
 @{
 }
+<h3>Late Plates and Early Plates</h3>
+<form method="post">
+<table>
+	<tr>
+		<td>
+			<button type="submit" name="DaySelect" value="M" >Monday</button>
+		</td>
+		<td>
+			<button type="submit" name="DaySelect" value="T" >Tuesday</button>
+		</td>
+		<td>
+			<button type="submit" name="DaySelect" value="W" >Wednesday</button>
+		</td>
+		<td>
+			<button type="submit" name="DaySelect" value="U" >Thursday</button>
+		</td>
+		<td>
+			<button type="submit" name="DaySelect" value="F" >Friday</button>
+		</td>
+	</tr>
+</table>
+</form>
+
+@if (Model.SelectedMembersLateLunch.Count != 0 || Model.SelectedMembersLateDinner.Count != 0)
+{
+	<h4>Late Plates</h4>
+	if (Model.SelectedMembersLateLunch.Count != 0)
+	{
+		<table>
+			<tr>
+				<th>Lunch</th>
+			</tr>
+			@foreach (Data.Member m in Model.SelectedMembersLateLunch)
+			{
+				<tr>
+					<td>@m.FullName</td>
+				</tr>
+			}
+		</table>
+	}
+	else
+	{
+		<h4>No Late Plates Available for Lunch</h4>
+	}
+	@if (Model.SelectedMembersLateDinner.Count != 0)
+	{
+		<table>
+			<tr>
+				<th>Dinner</th>
+			</tr>
+			@foreach (Data.Member m in Model.SelectedMembersLateDinner)
+			{
+				<tr>
+					<td>@m.FullName</td>
+				</tr>
+			}
+		</table>
+	}
+
+	else
+	{
+		<h4>No Late Plates Available for Dinner </h4>
+	}
+}
+else if (Model.ButtonHit == 1)
+{
+	<h4>No Late Plates Available</h4>
+}
+
+@if (Model.SelectedMembersEarlyLunch.Count != 0 || Model.SelectedMembersEarlyDinner.Count != 0)
+{
+	<h4>Early Plates</h4>
+	if (Model.SelectedMembersEarlyLunch.Count != 0)
+	{
+		<table>
+			<tr>
+				<th>Lunch</th>
+			</tr>
+			@foreach (Data.Member m in Model.SelectedMembersEarlyLunch)
+			{
+				<tr>
+					<td>@m.FullName</td>
+				</tr>
+			}
+		</table>
+	}
+	else
+	{
+		<h4>No Early Plates Available for Lunch</h4>
+	}
+	@if (Model.SelectedMembersEarlyDinner.Count != 0)
+	{
+		<table>
+			<tr>
+				<th>Dinner</th>
+			</tr>
+			@foreach (Data.Member m in Model.SelectedMembersEarlyDinner)
+			{
+				<tr>
+					<td>@m.FullName</td>
+				</tr>
+			}
+		</table>
+	}
+
+	else
+	{
+		<h4>No Early Plates Available for Dinner </h4>
+	}
+}
+else if (Model.ButtonHit == 1)
+{
+	<h4>No Early Plates Available</h4>
+}

@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "View Meals";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Weekly Meals</h1>
+</div>
+
+<div>
+    <table class="MenuTable">
+        <thead>
+            <tr>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (string s in Model.LunchMenu)
+                {
+                    <td>@s</td>
+                }
+            </tr>
+
+            <tr>
+                @foreach (string s in Model.DinnerMenu)
+                {
+                    <td>@s</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
