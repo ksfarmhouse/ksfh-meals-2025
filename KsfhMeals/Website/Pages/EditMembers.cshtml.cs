@@ -179,6 +179,11 @@ namespace Website.Pages
 				new SelectListItem { Value = "3", Text = "New Member" },
 				new SelectListItem { Value = "4", Text = "Alumni" }
 			};
+			Index = 0;
+			foreach (Member m in House.AllMembers)
+			{
+				ComboBoxNames.Add("Member" + m.ID);
+			}
 			return Page();
 		}
     }
