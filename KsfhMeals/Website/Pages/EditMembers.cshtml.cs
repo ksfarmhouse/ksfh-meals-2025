@@ -186,5 +186,23 @@ namespace Website.Pages
 			}
 			return Page();
 		}
-    }
+
+		public IActionResult OnPostReset()
+		{
+			foreach (Member m in House.AllMembers)
+			{
+				if (m.HouseStatus == Status.InHouse || m.HouseStatus == Status.NewMember)
+					m.DefaultSignUp = new MealStatus[] { MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, };
+
+				else
+					m.DefaultSignUp = new MealStatus[] { MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out };
+			}
+			foreach (Member m in House.AllMembers)
+			{
+				ComboBoxNames.Add("Member" + m.ID);
+			}
+			return Page();
+		}
+
+	}
 }

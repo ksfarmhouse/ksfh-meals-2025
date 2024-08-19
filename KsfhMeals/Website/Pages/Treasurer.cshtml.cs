@@ -1,3 +1,4 @@
+using Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -5,7 +6,9 @@ namespace Website.Pages
 {
     public class TreasurerModel : PageModel
     {
-        public void OnGet()
+		public IEnumerable<Member> AllMembers => House.AllMembers;
+
+		public void OnGet()
         {
         }
     }

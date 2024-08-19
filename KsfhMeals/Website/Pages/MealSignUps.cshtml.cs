@@ -17,9 +17,6 @@ namespace Website.Pages
         [HiddenInput]
         public string MemberID { get; set; }
 
-        
-        
-
         public void OnGet()
         {
         }
@@ -108,6 +105,7 @@ namespace Website.Pages
                 if (value == "1")
                 {
                     MemberToShow.TempSignUp[i] = MealStatus.In;
+ 
                 }
                 else if (value == "2")
                 {
@@ -122,7 +120,6 @@ namespace Website.Pages
                     MemberToShow.TempSignUp[i] = MealStatus.Late;
                 }
             }
-            MealStatus[] status = MemberToShow.DefaultSignUp;
             House.Save();
             return Page();
         }

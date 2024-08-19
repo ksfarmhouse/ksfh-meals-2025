@@ -16,9 +16,6 @@
 				<li class="nav-item">
 					<a class="nav-link text-dark" asp-area="" asp-page="/EditMembers">Edit Members</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link text-dark" asp-area="" asp-page="/PermaSignUp">Reset Meals</a>
-				</li>
 			</ul>
 		</div>
 	</div>
@@ -54,11 +51,17 @@
 					<td>
 					<input type="submit" value="Add Member" />
 					</td>
+					
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </form>
+
+<form asp-page-handler="Reset">
+	<input type="submit" value="Reset Meals" />
+</form>
+
 <form asp-page-handler ="Edit">
 	<input type="submit" value="Update Members"  />
 	<table>

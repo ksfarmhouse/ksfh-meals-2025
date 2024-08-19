@@ -31,8 +31,9 @@
             HouseStatus = houseStatus;
             DinnerCount = 0;
             LunchCount = 0;
-            TempSignUp = defaultSignUp;
-            DefaultSignUp = defaultSignUp;
+			DefaultSignUp = defaultSignUp;
+			TempSignUp = defaultSignUp;
+            
         }
     }
 }

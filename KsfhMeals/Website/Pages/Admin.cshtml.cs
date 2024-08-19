@@ -54,14 +54,33 @@ namespace Website.Pages
                 House.AddLunchItem(lunch);
                 House.AddDinnerItem(dinner);
             }
-            foreach (Member m in House.AllMembers)
-            {
-                for (int i = 0; i < m.TempSignUp.Count(); i++)
-                {
+		}
+
+        public void OnPostRollover()
+        {
+			foreach (Member m in House.AllMembers)
+			{
+				for (int i = 0; i < m.TempSignUp.Count(); i++)
+				{
+                    if (i % 2 == 0)
+                    {
+						if ((m.HouseStatus == Status.OutOfHouse || m.HouseStatus == Status.Alumni) && m.TempSignUp[i] == MealStatus.In)
+                        {
+                            m.LunchCount++;
+                        }
+					}
+                    else
+                    {
+						if ((m.HouseStatus == Status.OutOfHouse || m.HouseStatus == Status.Alumni) && m.TempSignUp[i] == MealStatus.In)
+						{
+							m.DinnerCount++;
+						}
+					}
+                    
 					m.TempSignUp[i] = m.DefaultSignUp[i];
 				}
-                      
-            }
-        }
+			}
+            House.Save();
+		}
     }
 }

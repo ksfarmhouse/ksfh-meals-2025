@@ -2,3 +2,25 @@
 @model Website.Pages.TreasurerModel
 @{
 }
+<table>
+	<tbody>
+		<tr>
+			<td>Last</td>
+			<td>First</td>
+			<td>Lunch Count</td>
+			<td>Dinner Count</td>
+		</tr>
+		@foreach (Data.Member m in Model.AllMembers)
+		{
+			@if(m.LunchCount > 0 || m.DinnerCount > 0)
+			{
+				<tr>
+					<td>@m.LastName</td>
+					<td>@m.FirstName</td>
+					<td>@m.LunchCount</td>
+					<td>@m.DinnerCount</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
