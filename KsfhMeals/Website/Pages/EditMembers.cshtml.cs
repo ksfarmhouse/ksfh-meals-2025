@@ -195,7 +195,12 @@ namespace Website.Pages
 					m.DefaultSignUp = new MealStatus[] { MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, };
 
 				else
+				{
 					m.DefaultSignUp = new MealStatus[] { MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out };
+					m.DinnerCount = 0;
+					m.LunchCount = 0;
+				}
+					
 			}
 			foreach (Member m in House.AllMembers)
 			{

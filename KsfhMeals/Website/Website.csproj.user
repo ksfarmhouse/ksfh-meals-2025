@@ -3,6 +3,6 @@
   <PropertyGroup>
     <RazorPage_SelectedScaffolderID>RazorPageScaffolder</RazorPage_SelectedScaffolderID>
     <RazorPage_SelectedScaffolderCategoryPath>root/Common/RazorPage</RazorPage_SelectedScaffolderCategoryPath>
-    <NameOfLastUsedPublishProfile>C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Website\Properties\PublishProfiles\ksfh-meals - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>FTPProfile</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

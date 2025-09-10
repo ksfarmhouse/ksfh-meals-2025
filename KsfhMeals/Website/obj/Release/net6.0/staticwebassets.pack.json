@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\obj\\Release\\net6.0\\scopedcss\\projectbundle\\Website.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Website.bundle.scp.css"
+      "PackagePath": "staticwebassets\\Website.b1qu28tiow.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\wwwroot\\css\\site.css",
@@ -243,6 +243,10 @@
     {
       "Id": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.Website.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.Website.Microsoft.AspNetCore.StaticWebAssets.props",

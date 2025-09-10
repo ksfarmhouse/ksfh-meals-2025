@@ -10,3 +10,4 @@ C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Data\obj\Release\net6.0\Da
 C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Data\obj\Release\net6.0\refint\Data.dll
 C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Data\obj\Release\net6.0\Data.pdb
 C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Data\obj\Release\net6.0\ref\Data.dll
+C:\Users\Tyler\source\repos\ksfh-meals-2024\KsfhMeals\Data\obj\Release\net6.0\Data.sourcelink.json
