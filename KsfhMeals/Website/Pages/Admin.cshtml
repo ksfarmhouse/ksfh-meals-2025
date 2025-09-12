@@ -1,32 +1,37 @@
 ﻿@page
 @model Website.Pages.AdminModel
 @{
+    ViewData["Title"] = "Admin Menu";
+    ViewData["ActiveTab"] = "EditMenu"; // sets the active tab
 }
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<head>
+    <link rel="stylesheet" href="~/css/AdminFormat.css" />
+</head>
+<nav class="admin-navbar navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin">Edit Menu</a>
+                    <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMenu" ? "active" : "") text-dark"
+                       asp-area="" asp-page="/Admin">Edit Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-page="/EditMembers">Edit Members</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-page="/PermaSignUp">Reset Meals</a>
+                    <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMembers" ? "active" : "") text-dark"
+                       asp-area="" asp-page="/EditMembers">Edit Members</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
+
 <form method="post">
     <div id="MenuEdit">
-        <table class="MenuTable" border="1">
+        <table class="MenuTable">
             <thead>
                 <tr>
                     <th>Monday</th>
@@ -37,47 +42,42 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <input type="text" name="ML" placeholder="Lunch" required />
-                    </td>
-                    <td>
-                        <input type="text" name="TL" placeholder="Lunch" required />
-                    </td>
-                    <td>
-                        <input type="text" name="WL" placeholder="Lunch" required />
-                    </td>
-                    <td>
-                        <input type="text" name="UL" placeholder="Lunch" required />
-                    </td>
-                    <td>
-                        <input type="text" name="FL" placeholder="Lunch" required />
-                    </td>
+                <tr> <!-- Lunch -->
+                    <td><input class="form-input" type="text" name="ML" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="TL" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="WL" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="UL" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="FL" placeholder="Lunch" required /></td>
                 </tr>
-
-                <tr>
-                    <td>
-                        <input type="text" name="MD" placeholder="Dinner" required />
-                    </td>
-                    <td>
-                        <input type="text" name="TD" placeholder="Dinner" required />
-                    </td>
-                    <td>
-                        <input type="text" name="WD" placeholder="Dinner" required />
-                    </td>
-                    <td>
-                        <input type="text" name="UD" placeholder="Dinner" required />
-                    </td>
-                    <td>
-                        <input type="text" name="FD" placeholder="Dinner" required />
-                    </td>
+                <tr> <!-- Dinner -->
+                    <td><input class="form-input" type="text" name="MD" placeholder="Dinner" required /></td>
+                    <td><input class="form-input" type="text" name="TD" placeholder="Dinner" required /></td>
+                    <td><input class="form-input" type="text" name="WD" placeholder="Dinner" required /></td>
+                    <td><input class="form-input" type="text" name="UD" placeholder="Dinner" required /></td>
+                    <td><input class="form-input" type="text" name="FD" placeholder="Dinner" required /></td>
                 </tr>
             </tbody>
         </table>
-        <input type="submit" value="Save" />
+
+        <div style="text-align:center; margin-top:20px;">
+            <input type="submit" class="btn-save" value="Save" />
+        </div>
     </div>
 </form>
 
-<form asp-page-handler="Rollover">
-    <input type="submit" value="Rollover Meals" />
-</form>
+<!-- Rollover Meals -->
+<div class="text-center admin-action">
+    <p>The "Rollover Meals" button returns all temporary meals back to permanent signups.</p>
+    <p>This button also lists the out of house and alumni meals from the week and puts the meal on the treasurer page.</p>
+    <form asp-page-handler="Rollover">
+        <input type="submit" class="btn-rollover" value="Rollover Meals" />
+    </form>
+</div>
+
+<!-- Reset Meals -->
+<div class="text-center admin-action">
+    <p>The "Reset Meals" button sets meals back to defaults based on member status.</p>
+    <form asp-page-handler="ResetMeals">
+        <input type="submit" class="btn-rollover" value="Reset Meals" />
+    </form>
+</div>

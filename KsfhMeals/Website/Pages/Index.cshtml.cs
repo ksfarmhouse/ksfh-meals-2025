@@ -16,7 +16,7 @@ namespace Website.Pages
 
         public void OnGet()
         {
-
+            ViewData["ActivePage"] = "Menu";
         }
 
         public IEnumerable<string> LunchMenu => House.Lunch;

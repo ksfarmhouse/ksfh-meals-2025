@@ -1,0 +1,91 @@
+﻿:root {
+    --fh-green: #004d2d;
+    --fh-gold: #d4af37;
+    --fh-white: #ffffff;
+    --fh-light-green: #eaf4ed;
+}
+
+body {
+    background-color: var(--fh-light-green);
+    font-family: Arial, sans-serif;
+    color: var(--fh-green);
+    margin: 0;
+    padding: 20px;
+}
+
+/* Page title */
+h3 {
+    text-align: center;
+    color: var(--fh-green);
+    border-bottom: 3px solid var(--fh-gold);
+    padding-bottom: 10px;
+}
+
+/* Day buttons */
+.day-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.day-btn {
+    background-color: var(--fh-white);
+    color: var(--fh-green);
+    border: 2px solid var(--fh-green);
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.day-btn:hover {
+    background-color: var(--fh-gold);
+    color: var(--fh-green);
+}
+
+.day-btn.active {
+    background-color: var(--fh-green);
+    color: var(--fh-white);
+}
+
+/* Plates grid */
+.plates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* Each card */
+.plate-card {
+    border: 2px solid var(--fh-gold);
+    padding: 15px;
+    border-radius: 12px;
+    background-color: var(--fh-white);
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Card headings */
+.plate-card h4 {
+    color: var(--fh-gold);
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px solid var(--fh-green);
+    padding-bottom: 5px;
+}
+
+/* Lists inside cards */
+ul {
+    padding-left: 20px;
+    margin: 10px 0 0 0;
+}
+
+/* Responsive: stack cards on small screens */
+@media (max-width: 768px) {
+    .plates-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -9,101 +9,93 @@ namespace Website.Pages
         public IEnumerable<Member> AllMembers => House.AllMembers;
 
         public List<Member> SelectedMembersLateLunch { get; set; } = new List<Member>();
-        
+
         public List<Member> SelectedMembersLateDinner { get; set; } = new List<Member>();
 
-		public List<Member> SelectedMembersEarlyLunch { get; set; } = new List<Member>();
+        public List<Member> SelectedMembersEarlyLunch { get; set; } = new List<Member>();
 
-		public List<Member> SelectedMembersEarlyDinner { get; set; } = new List<Member>();
+        public List<Member> SelectedMembersEarlyDinner { get; set; } = new List<Member>();
 
-		public int ButtonHit { get; set; } = 0;
+        public double LunchCookCount { get; set; } = -2; //take out crew
+
+        public int LunchTableCount { get; set; } = 0;
+
+        public double DinnerCookCount { get; set; } = -4; //take out crew add Mom T
+
+        public int DinnerTableCount { get; set; } = 0;
+
+        public int ButtonHit { get; set; } = 0;
+
+        public string ?SelectedDay { get; set; }
+
         public void OnGet(string DaySelect)
         {
-		
+            ViewData["ActivePage"] = "Late/Early Plates";
         }
 
-		public IActionResult OnPost(string DaySelect)
+        public IActionResult OnPost(string DaySelect)
         {
-            if (DaySelect == "M")
+            SelectedDay = DaySelect;
+
+            int lunchIndex = 0;
+            int dinnerIndex = 1;
+
+
+            switch (DaySelect)
             {
-                foreach (Member m in AllMembers)
-                {
-                    if (m.TempSignUp[0] == MealStatus.Late)
-                        SelectedMembersLateLunch.Add(m);
-					else if (m.TempSignUp[0] == MealStatus.Early)
-						SelectedMembersEarlyLunch.Add(m);
+                //Monday
+                case "M":
+                    lunchIndex = 0; dinnerIndex = 1;
+                    break;
+                //Tuesday
+                case "T":
+                    lunchIndex = 2; dinnerIndex = 3;
+                    break;
 
-					if (m.TempSignUp[1] == MealStatus.Late)
-						SelectedMembersLateDinner.Add(m);
-					else if (m.TempSignUp[1] == MealStatus.Early)
-						SelectedMembersEarlyDinner.Add(m);
-                }
-			}
+                //Wednesday
+                case "W":
+                    lunchIndex = 4; dinnerIndex = 5;
+                    break;
+                //Thursday
+                case "U":
+                    lunchIndex = 6; dinnerIndex = 7;
+                    break;
+                //Friday
+                case "F":
+                    lunchIndex = 8; dinnerIndex = 9;
+                    break;
+                default:
+                    lunchIndex = 0; dinnerIndex = 1;
+                    break;
+            }
 
-			else if (DaySelect == "T")
-			{
-				foreach (Member m in AllMembers)
-				{
-					if (m.TempSignUp[2] == MealStatus.Late)
-						SelectedMembersLateLunch.Add(m);
-					else if (m.TempSignUp[2] == MealStatus.Early)
-						SelectedMembersEarlyLunch.Add(m);
+            // Loop through all members and populate lists/counts
+            foreach (Member m in AllMembers)
+            {
+                // Lunch
+                if (m.TempSignUp[lunchIndex] == MealStatus.Late)
+                    SelectedMembersLateLunch.Add(m);
+                else if (m.TempSignUp[lunchIndex] == MealStatus.Early)
+                    SelectedMembersEarlyLunch.Add(m);
 
-					if (m.TempSignUp[3] == MealStatus.Late)
-						SelectedMembersLateDinner.Add(m);
-					else if (m.TempSignUp[3] == MealStatus.Early)
-						SelectedMembersEarlyDinner.Add(m);
-				}
-			}
+                if (m.TempSignUp[lunchIndex] == MealStatus.In)
+                    LunchCookCount++;
 
-			else if (DaySelect == "W")
-			{
-				foreach (Member m in AllMembers)
-				{
-					if (m.TempSignUp[4] == MealStatus.Late)
-						SelectedMembersLateLunch.Add(m);
-					else if (m.TempSignUp[4] == MealStatus.Early)
-						SelectedMembersEarlyLunch.Add(m);
+                // Dinner
+                if (m.TempSignUp[dinnerIndex] == MealStatus.Late)
+                    SelectedMembersLateDinner.Add(m);
+                else if (m.TempSignUp[dinnerIndex] == MealStatus.Early)
+                    SelectedMembersEarlyDinner.Add(m);
 
-					if (m.TempSignUp[5] == MealStatus.Late)
-						SelectedMembersLateDinner.Add(m);
-					else if (m.TempSignUp[5] == MealStatus.Early)
-						SelectedMembersEarlyDinner.Add(m);
-				}
-			}
+                if (m.TempSignUp[dinnerIndex] == MealStatus.In)
+                    DinnerCookCount++;
+            }
 
-			else if (DaySelect == "U")
-			{
-				foreach (Member m in AllMembers)
-				{
-					if (m.TempSignUp[6] == MealStatus.Late)
-						SelectedMembersLateLunch.Add(m);
-					else if (m.TempSignUp[6] == MealStatus.Early)
-						SelectedMembersEarlyLunch.Add(m);
-
-					if (m.TempSignUp[7] == MealStatus.Late)
-						SelectedMembersLateDinner.Add(m);
-					else if (m.TempSignUp[7] == MealStatus.Early)
-						SelectedMembersEarlyDinner.Add(m);
-				}
-			}
-			else
-			{
-				foreach (Member m in AllMembers)
-				{
-					if (m.TempSignUp[8] == MealStatus.Late)
-						SelectedMembersLateLunch.Add(m);
-					else if (m.TempSignUp[8] == MealStatus.Early)
-						SelectedMembersEarlyLunch.Add(m);
-
-					if (m.TempSignUp[9] == MealStatus.Late)
-						SelectedMembersLateDinner.Add(m);
-					else if (m.TempSignUp[9] == MealStatus.Early)
-						SelectedMembersEarlyDinner.Add(m);
-				}
-			}
-			ButtonHit = 1;
-			return Page();
-		}
+            LunchTableCount = (int)Math.Ceiling(LunchCookCount / 9);
+            DinnerTableCount = (int)Math.Ceiling(DinnerCookCount / 9);
+            ButtonHit = 1;
+            return Page();
+        }
     }
 }
+

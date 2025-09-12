@@ -2,17 +2,24 @@
 @model Website.Pages.PermaSignUpModel
 @{
 }
+<link rel="stylesheet" href="~/css/PermanentSignUpFormat.css" />
+
 <form method="post">
     <div>
         <h3>Enter ID</h3>
-
         <input type="text" asp-for="ID" placeholder="ID" />
         <input type="submit" value="Enter" />
+        <p class="text-center">
+            This is the permanent meal sign-up. Please enter your regular meal schedule here.
+            At the end of each week, your meal plan will automatically reset to this schedule.
+        </p>
     </div>
+
     <div>
         @if (Model.MemberToShow != null)
         {
             <input type="hidden" asp-for="MemberID" />
+
             <table class="MenuTable">
                 <thead>
                     <tr>
@@ -29,10 +36,9 @@
                         <th>Lunch</th>
                         @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
                         {
-                            List<SelectListItem> Items = Model.GetItems(Model.MemberToShow.DefaultSignUp[i]);
-
+                            var Items = Model.GetItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
-                                <select asp-items="Items" name=@Model.comboBoxNames[i]></select>
+                                <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
                         }
                     </tr>
@@ -40,18 +46,21 @@
                         <th>Dinner</th>
                         @for (int i = 1; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
                         {
-                            List<SelectListItem> Items = Model.GetItems(Model.MemberToShow.DefaultSignUp[i]);
-
+                            var Items = Model.GetItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
-                                <select asp-items="Items" name=@Model.comboBoxNames[i]></select>
+                                <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
                         }
                     </tr>
-
-
                 </tbody>
             </table>
-            <input type="submit" value="Save" asp-page-handler="EditSignUp" />
+
+            <div class="text-center admin-action">
+                <input type="submit" value="Save" asp-page-handler="EditSignUp" class="btn-save" />
+            </div>
+            <p class="confirmation-message">
+                @Model.SaveConfirmationMessage
+            </p>
         }
     </div>
 </form>

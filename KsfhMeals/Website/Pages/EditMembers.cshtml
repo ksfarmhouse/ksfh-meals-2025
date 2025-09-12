@@ -1,88 +1,97 @@
 ﻿@page
 @model Website.Pages.EditMembersModel
 @{
+    ViewData["Title"] = "Edit Members";
+    ViewData["ActiveTab"] = "EditMembers"; // sets the active tab
 }
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-	<div class="container">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-				aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-			<ul class="navbar-nav flex-grow-1">
-				<li class="nav-item">
-					<a class="nav-link text-dark" asp-area="" asp-page="/Admin">Edit Menu</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link text-dark" asp-area="" asp-page="/EditMembers">Edit Members</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+
+<link rel="stylesheet" href="~/css/AdminFormat.css" />
+
+<nav class="admin-navbar navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMenu" ? "active" : "") text-dark"
+                       asp-area="" asp-page="/Admin">Edit Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMembers" ? "active" : "") text-dark"
+                       asp-area="" asp-page="/EditMembers">Edit Members</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
+<h1 class="display-4" style="text-align:center; margin-bottom:20px;">Manage House Members</h1>
+
+<!-- Add Member Form -->
 <form method="post" asp-page-handler="New">
-	<div id="AddMember">
-		<table>
-			<thead>
-				<tr>
-					<th>Add Member</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<input type="text" name="First" placeholder="First Name" required />
-					</td>
-					<td>
-						<input type="text" name="Last" placeholder="Last Name" required />
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<input type="text" name="ID" placeholder="ID" required />
-					</td>
-					<td>
-						<select asp-for="SelectedStatus" asp-items="Model.Items"></select>
-
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<input type="submit" value="Add Member" />
-					</td>
-					
-				</tr>
-			</tbody>
-		</table>
-	</div>
+    <div id="AddMember">
+        <table class="MenuTable">
+            <thead>
+                <tr>
+                    <th colspan="2">Add Member</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="form-input" type="text" name="First" placeholder="First Name" required /></td>
+                    <td><input class="form-input" type="text" name="Last" placeholder="Last Name" required /></td>
+                </tr>
+                <tr>
+                    <td><input class="form-input" type="text" name="ID" placeholder="ID" required /></td>
+                    <td>
+                        <select class="form-input" asp-for="SelectedStatus" asp-items="Model.Items"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center; margin-top:10px;">
+                        <input type="submit" class="btn-save" value="Add Member" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </form>
 
-<form asp-page-handler="Reset">
-	<input type="submit" value="Reset Meals" />
-</form>
+<!-- Update & Remove Members Form -->
+<form method="post" asp-page-handler="Edit">
+    <table class="MenuTable">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Data.Member m in Model.AllMembers)
+            {
+                <tr>
+                    <td>@m.LastName</td>
+                    <td>@m.FirstName</td>
+                    <td>@m.ID</td>
+                    <td>
+                        <select class="form-input" asp-for="SelectedEditStatus" name="@Model.ComboBoxNames[Model.Index]" asp-items="@Model.GetOtherStatus(m.HouseStatus)"></select>
+                    </td>
+                    <td style="text-align:center;">
+                        <button type="submit" class="btn-rollover" asp-page-handler="Remove" name="RemoveMember" value="@m.ID.ToString()">Remove</button>
+                    </td>
+                </tr>
+                Model.Index++;
+            }
+        </tbody>
+    </table>
 
-<form asp-page-handler ="Edit">
-	<input type="submit" value="Update Members"  />
-	<table>
-		<tbody>
-		@foreach (Data.Member m in Model.AllMembers)
-		{
-			<tr>
-				<td>@m.LastName</td>
-				<td>@m.FirstName</td>
-				<td>@m.ID</td>
-				<td>
-								
-					<select asp-for="SelectedEditStatus" name=@Model.ComboBoxNames[Model.Index] asp-items=@Model.GetOtherStatus(m.HouseStatus);></select>
-								
-				</td>
-				<td>
-					<button type="submit" asp-page-handler="Remove" name ="RemoveMember" value="@m.ID.ToString()">Remove</button>
-				</td>
-				</tr>
-				Model.Index++;
-			}
-		</tbody>
-	</table>
+    <div style="text-align:center; margin-top:20px;">
+        <input type="submit" class="btn-save" value="Update Members" />
+    </div>
 </form>

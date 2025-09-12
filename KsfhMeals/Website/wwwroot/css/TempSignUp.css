@@ -1,0 +1,135 @@
+﻿:root {
+    --fh-green: #004d2d;
+    --fh-gold: #d4af37;
+    --fh-white: #ffffff;
+    --fh-light-green: #eaf4ed;
+}
+
+/*---------------------------------------
+General Styles
+---------------------------------------*/
+
+body {
+    background-color: var(--fh-light-green);
+    font-family: Arial, sans-serif;
+    color: var(--fh-green);
+    margin: 0;
+    padding: 20px;
+}
+
+.display-4 {
+    text-align: center;
+    color: var(--fh-green);
+    border-bottom: 3px solid var(--fh-gold);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+table {
+    background-color: var(--fh-white);
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th {
+    background-color: var(--fh-green);
+    color: var(--fh-white);
+    font-weight: bold;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid var(--fh-green);
+    padding: 8px;
+    color: var(--fh-green);
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid var(--fh-green);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--fh-green);
+}
+
+.btn-save, .btn-rollover {
+    background-color: var(--fh-green);
+    color: var(--fh-white);
+    border: 1px solid var(--fh-green);
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-save:hover, .btn-rollover:hover {
+    background-color: var(--fh-gold);
+    color: var(--fh-green);
+    border-color: var(--fh-gold);
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.admin-action {
+    margin-top: 20px;
+}
+
+.confirmation-message {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+
+    th, td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .form-input {
+        font-size: 12px;
+    }
+
+    .btn-save, .btn-rollover {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+.admin-navbar {
+    background-color: var(--fh-white);
+    border-bottom: 3px solid var(--fh-green);
+    padding: 0.5rem 1rem;
+}
+
+    .admin-navbar .nav-link {
+        color: var(--fh-green) !important;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+
+        .admin-navbar .nav-link:hover {
+            background-color: var(--fh-gold);
+            color: var(--fh-green) !important;
+        }
+
+        .admin-navbar .nav-link.active {
+            background-color: var(--fh-green);
+            color: var(--fh-white) !important;
+        }

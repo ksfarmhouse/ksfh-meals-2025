@@ -1,26 +1,40 @@
 ﻿@page
 @model Website.Pages.TreasurerModel
 @{
+    ViewData["Title"] = "Treasurer";
 }
-<table>
-	<tbody>
-		<tr>
-			<td>Last</td>
-			<td>First</td>
-			<td>Lunch Count</td>
-			<td>Dinner Count</td>
-		</tr>
+
+<link rel="stylesheet" href="~/css/TreasurerFormat.css" />
+
+<div class="text-center">
+    <h1 class="display-4">Treasurer Overview</h1>
+</div>
+
+<div class="treasurer-table-container">
+    <table class="TreasurerTable">
+        <thead>
+            <tr>
+                <th>Last</th>
+                <th>First</th>
+                <th>Lunch Count</th>
+                <th>Dinner Count</th>
+                <th>House Status</th>
+            </tr>
+        </thead>
+        <tbody>
 		@foreach (Data.Member m in Model.AllMembers)
 		{
-			@if(m.LunchCount > 0 || m.DinnerCount > 0)
+			@if(m.LunchCount > 0 || m.DinnerCount > 0 && (m.HouseStatus == Data.Status.OutOfHouse))
 			{
 				<tr>
 					<td>@m.LastName</td>
 					<td>@m.FirstName</td>
 					<td>@m.LunchCount</td>
 					<td>@m.DinnerCount</td>
+					<td>@m.HouseStatus</td>
 				</tr>
 			}
 		}
-	</tbody>
-</table>
+	 </tbody>
+    </table>
+</div>

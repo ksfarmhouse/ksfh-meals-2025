@@ -21,6 +21,7 @@ namespace Website.Pages
 
         public void OnGet()
         {
+            ViewData["ActivePage"] = "Permanent Sign Up";
         }
 
         public void OnPost()
@@ -40,6 +41,8 @@ namespace Website.Pages
             }
             return null;
         }
+
+        public string? SaveConfirmationMessage { get; set; }
 
         public List<SelectListItem> GetItems(MealStatus status)
         {
@@ -121,6 +124,8 @@ namespace Website.Pages
                     MemberToShow.DefaultSignUp[i] = MealStatus.Late;
                 }
                 MemberToShow.TempSignUp[i] = MemberToShow.DefaultSignUp[i];
+
+                SaveConfirmationMessage = "Your meal sign-up has been saved successfully!";
             }
             
             House.Save();

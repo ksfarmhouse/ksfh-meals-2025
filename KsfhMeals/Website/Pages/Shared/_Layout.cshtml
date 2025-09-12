@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Website</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Website.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -20,28 +20,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Menu</a>
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Menu" ? "active" : "")" asp-area="" asp-page="/Index">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/MealSignUps">Sign Up/View Meals</a>
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Sign Up/ View Meals" ? "active" : "")" asp-area="" asp-page="/MealSignUps">Sign Up/View Meals</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/PermaSignUp">Permanent Sign Up</a>
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Permanent Sign Up" ? "active" : "")" asp-area="" asp-page="/PermaSignUp">Permanent Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/LatePlates">Late/Early Plates</a>
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Late/Early Plates" ? "active" : "")" asp-area="" asp-page="/LatePlates">Late/Early Plates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Treasurer" ? "active" : "")" asp-area="" asp-page="/Treasurer">Treasurer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Admin" ? "active" : "")" asp-area="" asp-page="/Authorize">Admin</a>
                         </li>
                         <!---
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Cook">Cook</a>
+                        <li class="nav-item"> add at sing back if using again
+                             <a class="nav-link (ViewData["ActivePage"]?.ToString() == "Authorize" ? "active" : "")" asp-area="" asp-page="/Cook">Cook</a>
                         </li>
                         --->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Treasurer">Treasurer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Authorize">Admin</a>
-                        </li>
                     </ul>
                 </div>
             </div>

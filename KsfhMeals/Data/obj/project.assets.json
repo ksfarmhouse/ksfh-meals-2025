@@ -56,27 +56,17 @@
           "runtime.native.System.Data.SqlClient.sni": "4.4.0"
         },
         "compile": {
-          "lib/net6.0/System.Data.SqlClient.dll": {
+          "lib/netstandard2.0/System.Data.SqlClient.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/System.Data.SqlClient.dll": {
+          "lib/netstandard2.0/System.Data.SqlClient.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/net6.0/System.Data.SqlClient.dll": {
-            "assetType": "runtime",
-            "rid": "unix"
-          },
-          "runtimes/win/lib/net6.0/System.Data.SqlClient.dll": {
-            "assetType": "runtime",
-            "rid": "win"
-          }
+          "buildTransitive/netcoreapp2.0/System.Data.SqlClient.targets": {}
         }
       }
     }
@@ -216,23 +206,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tyler\\.nuget\\packages\\": {},
+    "C:\\Users\\hunte\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\Tyler\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Data\\obj\\",
+      "projectPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2024\\KsfhMeals\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tyler\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hunte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -259,7 +249,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net6.0": {
@@ -290,7 +280,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\RuntimeIdentifierGraph.json"
       }
     }
   }

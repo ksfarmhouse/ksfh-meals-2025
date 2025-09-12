@@ -3,116 +3,96 @@
 @{
 }
 <h3>Late Plates and Early Plates</h3>
+
 <form method="post">
-<table>
-	<tr>
-		<td>
-			<button type="submit" name="DaySelect" value="M" >Monday</button>
-		</td>
-		<td>
-			<button type="submit" name="DaySelect" value="T" >Tuesday</button>
-		</td>
-		<td>
-			<button type="submit" name="DaySelect" value="W" >Wednesday</button>
-		</td>
-		<td>
-			<button type="submit" name="DaySelect" value="U" >Thursday</button>
-		</td>
-		<td>
-			<button type="submit" name="DaySelect" value="F" >Friday</button>
-		</td>
-	</tr>
-</table>
+    <div class="day-buttons">
+        <button type="submit" name="DaySelect" value="M" class="@(Model.SelectedDay == "M" ? "day-btn active" : "day-btn")">Monday</button>
+        <button type="submit" name="DaySelect" value="T" class="@(Model.SelectedDay == "T" ? "day-btn active" : "day-btn")">Tuesday</button>
+        <button type="submit" name="DaySelect" value="W" class="@(Model.SelectedDay == "W" ? "day-btn active" : "day-btn")">Wednesday</button>
+        <button type="submit" name="DaySelect" value="U" class="@(Model.SelectedDay == "U" ? "day-btn active" : "day-btn")">Thursday</button>
+        <button type="submit" name="DaySelect" value="F" class="@(Model.SelectedDay == "F" ? "day-btn active" : "day-btn")">Friday</button>
+    </div>
 </form>
 
-@if (Model.SelectedMembersLateLunch.Count != 0 || Model.SelectedMembersLateDinner.Count != 0)
-{
-	<h4>Late Plates</h4>
-	if (Model.SelectedMembersLateLunch.Count != 0)
-	{
-		<table>
-			<tr>
-				<th>Lunch</th>
-			</tr>
-			@foreach (Data.Member m in Model.SelectedMembersLateLunch)
-			{
-				<tr>
-					<td>@m.FullName</td>
-				</tr>
-			}
-		</table>
-	}
-	else
-	{
-		<h4>No Late Plates for Lunch</h4>
-	}
-	@if (Model.SelectedMembersLateDinner.Count != 0)
-	{
-		<table>
-			<tr>
-				<th>Dinner</th>
-			</tr>
-			@foreach (Data.Member m in Model.SelectedMembersLateDinner)
-			{
-				<tr>
-					<td>@m.FullName</td>
-				</tr>
-			}
-		</table>
-	}
+<link rel="stylesheet" href="~/css/EarlyLatePlateFormat.css" asp-append-version="true" />
 
-	else
-	{
-		<h4>No Late Plates for Dinner </h4>
-	}
-}
-else if (Model.ButtonHit == 1)
+@if (Model.ButtonHit == 1)
 {
-	<h4>No Late Plates</h4>
-}
+    <div class="plates-grid">
+        <!-- Early Lunch -->
+        <div class="plate-card">
+            <h4>Early Lunch Plates (@Model.SelectedMembersEarlyLunch.Count)</h4>
+            <p>Set for @Model.LunchCookCount Members</p>
+            <p>@Model.LunchTableCount Tables</p>
+            @if (Model.SelectedMembersEarlyLunch.Count > 0)
+            {
+                <ul>
+                    @foreach (var member in Model.SelectedMembersEarlyLunch)
+                    {
+                        <li>@member.FullName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No Early Lunch Plates</p>
+            }
+        </div>
 
-@if (Model.SelectedMembersEarlyLunch.Count != 0 || Model.SelectedMembersEarlyDinner.Count != 0)
-{
-	<h4>Early Plates</h4>
-	if (Model.SelectedMembersEarlyLunch.Count != 0)
-	{
-		<table>
-			<tr>
-				<th>Lunch</th>
-			</tr>
-			@foreach (Data.Member m in Model.SelectedMembersEarlyLunch)
-			{
-				<tr>
-					<td>@m.FullName</td>
-				</tr>
-			}
-		</table>
-	}
-	else
-	{
-		<h4>No Early Plates for Lunch</h4>
-	}
-	@if (Model.SelectedMembersEarlyDinner.Count != 0)
-	{
-		<table>
-			<tr>
-				<th>Dinner</th>
-			</tr>
-			@foreach (Data.Member m in Model.SelectedMembersEarlyDinner)
-			{
-				<tr>
-					<td>@m.FullName</td>
-				</tr>
-			}
-		</table>
-	}
+        <!-- Late Lunch -->
+        <div class="plate-card">
+            <h4>Late Lunch Plates (@Model.SelectedMembersLateLunch.Count)</h4>
+            @if (Model.SelectedMembersLateLunch.Count > 0)
+            {
+                <ul>
+                    @foreach (var member in Model.SelectedMembersLateLunch)
+                    {
+                        <li>@member.FullName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No Late Lunch Plates</p>
+            }
+        </div>
 
-	else
-	{
-		<h4>No Early Plates for Dinner </h4>
-	}
-}
-else if (Model.ButtonHit == 1)
-{
-	<h4>No Early Plates</h4>
+        <!-- Early Dinner -->
+        <div class="plate-card">
+            <h4>Early Dinner Plates (@Model.SelectedMembersEarlyDinner.Count)</h4>
+            <p>Set for @Model.DinnerCookCount Members</p>
+            <p>@Model.DinnerTableCount Tables</p>
+            @if (Model.SelectedMembersEarlyDinner.Count > 0)
+            {
+                <ul>
+                    @foreach (var member in Model.SelectedMembersEarlyDinner)
+                    {
+                        <li>@member.FullName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No Early Dinner Plates</p>
+            }
+        </div>
+
+        <!-- Late Dinner -->
+        <div class="plate-card">
+            <h4>Late Dinner Plates (@Model.SelectedMembersLateDinner.Count)</h4>
+            @if (Model.SelectedMembersLateDinner.Count > 0)
+            {
+                <ul>
+                    @foreach (var member in Model.SelectedMembersLateDinner)
+                    {
+                        <li>@member.FullName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No Late Dinner Plates</p>
+            }
+        </div>
+    </div>
 }

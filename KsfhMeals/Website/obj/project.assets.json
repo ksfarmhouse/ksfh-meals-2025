@@ -250,23 +250,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tyler\\.nuget\\packages\\": {},
+    "C:\\Users\\hunte\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\Website.csproj",
+      "projectUniqueName": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\Website.csproj",
       "projectName": "Website",
-      "projectPath": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\Website.csproj",
-      "packagesPath": "C:\\Users\\Tyler\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\obj\\",
+      "projectPath": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Website\\Website.csproj",
+      "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2024\\KsfhMeals\\Website\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tyler\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hunte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -281,8 +281,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\Tyler\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj"
+            "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj"
             }
           }
         }
@@ -297,7 +297,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -331,7 +331,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
