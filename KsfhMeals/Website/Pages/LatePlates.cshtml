@@ -2,7 +2,13 @@
 @model Website.Pages.LatePlatesModel
 @{
 }
-<h3>Late Plates and Early Plates</h3>
+
+<head>
+    <link rel="stylesheet" href="~/css/EarlyLatePlateFormat.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<h3 class="title">Late Plates and Early Plates</h3>
 
 <form method="post">
     <div class="day-buttons">
@@ -13,8 +19,6 @@
         <button type="submit" name="DaySelect" value="F" class="@(Model.SelectedDay == "F" ? "day-btn active" : "day-btn")">Friday</button>
     </div>
 </form>
-
-<link rel="stylesheet" href="~/css/EarlyLatePlateFormat.css" asp-append-version="true" />
 
 @if (Model.ButtonHit == 1)
 {

@@ -11,6 +11,7 @@ namespace Data
         In,
         Out,
         Early,
-        Late
+        Late,
+        Walkthrough
     }
 }

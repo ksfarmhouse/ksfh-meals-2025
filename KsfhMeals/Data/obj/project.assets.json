@@ -56,17 +56,27 @@
           "runtime.native.System.Data.SqlClient.sni": "4.4.0"
         },
         "compile": {
-          "lib/netstandard2.0/System.Data.SqlClient.dll": {
+          "lib/net6.0/System.Data.SqlClient.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Data.SqlClient.dll": {
+          "lib/net6.0/System.Data.SqlClient.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/netcoreapp2.0/System.Data.SqlClient.targets": {}
+          "buildTransitive/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/net6.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/net6.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
         }
       }
     }
@@ -212,11 +222,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2024\\KsfhMeals\\Data\\Data.csproj",
+      "projectPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj",
       "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2024\\KsfhMeals\\Data\\obj\\",
+      "outputPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

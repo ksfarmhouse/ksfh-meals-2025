@@ -5,7 +5,9 @@
     ViewData["ActiveTab"] = "EditMembers"; // sets the active tab
 }
 
-<link rel="stylesheet" href="~/css/AdminFormat.css" />
+<head>
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
 
 <nav class="admin-navbar navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
@@ -28,7 +30,7 @@
     </div>
 </nav>
 
-<h1 class="display-4" style="text-align:center; margin-bottom:20px;">Manage House Members</h1>
+<h1 class="title" style="text-align:center; margin-bottom:20px;">Manage House Members</h1>
 
 <!-- Add Member Form -->
 <form method="post" asp-page-handler="New">

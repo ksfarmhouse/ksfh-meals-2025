@@ -19,7 +19,7 @@ body {
 }
 
 /* Page title */
-.display-4 {
+.title {
     text-align: center;
     color: var(--fh-green);
     border-bottom: 3px solid var(--fh-gold);
@@ -34,20 +34,20 @@ table {
     margin: 0 auto;
 }
 
-/* Table header colors */
 th {
     background-color: var(--fh-green);
     color: var(--fh-white);
     font-weight: bold;
     padding: 8px;
+    border: 1px solid var(--fh-green);
 }
 
-/* Table cells */
 td {
     border: 1px solid var(--fh-green);
-    padding: 8px;
     color: var(--fh-green);
     font-size: 14px;
+    padding: 8px;
+    border: 1px solid var(--fh-green);
 }
 
 /* Inputs inside table cells */
@@ -60,7 +60,20 @@ td {
     color: var(--fh-green);
 }
 
-/* Buttons */
+.text-center {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.admin-action {
+    margin-top: 20px;
+}
+
+/*---------------------------------------
+Buttons
+---------------------------------------*/
+
+
 .btn-save, .btn-rollover {
     background-color: var(--fh-green);
     color: var(--fh-white);
@@ -72,22 +85,63 @@ td {
     transition: all 0.2s ease;
 }
 
-    .btn-save:hover, .btn-rollover:hover {
-        background-color: var(--fh-gold);
-        color: var(--fh-green);
-        border-color: var(--fh-gold);
-    }
+.btn-save:hover, .btn-rollover:hover {
+    background-color: var(--fh-gold);
+    color: var(--fh-green);
+    border-color: var(--fh-gold);
+}
 
-.text-center {
+/* Confirm action was commited*/
+.confirmation-message {
     text-align: center;
-    margin-top: 10px;
+    color: var(--fh-green);
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 16px;
 }
 
-.admin-action {
-    margin-top: 20px;
+
+
+/*---------------------------------------
+Navbar / Admin Tabs
+---------------------------------------*/
+/* Navbar links */
+.navbar-nav .nav-link {
+    background-color: var(--fh-white);
+    color: var(--fh-green);
+    border: 2px solid var(--fh-green);
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    transition: all 0.2s ease;
+    display: inline-block;
 }
 
-/* Responsive adjustments for smaller screens */
+/* Hover effect */
+.navbar-nav .nav-link:hover {
+    background-color: var(--fh-gold); /* yellow/gold */
+    color: var(--fh-green);
+}
+
+/* Active page highlight stays green */
+.navbar-nav .nav-link.active {
+    background-color: var(--fh-green);
+    color: var(--fh-white) !important;
+}
+
+/* Navbar for Admin Page*/
+.admin-navbar {
+    background-color: var(--fh-white);
+    border-bottom: 3px solid var(--fh-green);
+    padding: 0.5rem 1rem;
+}
+
+
+
+/*---------------------------------------
+Media / Phone Sizing
+---------------------------------------*/
 @media (max-width: 768px) {
     table {
         width: 100%;
@@ -109,31 +163,3 @@ td {
         font-size: 12px;
     }
 }
-
-/*---------------------------------------
-Navbar / Admin Tabs
----------------------------------------*/
-
-.admin-navbar {
-    background-color: var(--fh-white);
-    border-bottom: 3px solid var(--fh-green);
-    padding: 0.5rem 1rem;
-}
-
-    .admin-navbar .nav-link {
-        color: var(--fh-green) !important;
-        font-weight: bold;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        margin-right: 5px;
-    }
-
-        .admin-navbar .nav-link:hover {
-            background-color: var(--fh-gold);
-            color: var(--fh-green) !important;
-        }
-
-        .admin-navbar .nav-link.active {
-            background-color: var(--fh-green);
-            color: var(--fh-white) !important;
-        }

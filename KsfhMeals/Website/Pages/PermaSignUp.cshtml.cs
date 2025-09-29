@@ -44,7 +44,75 @@ namespace Website.Pages
 
         public string? SaveConfirmationMessage { get; set; }
 
-        public List<SelectListItem> GetItems(MealStatus status)
+        public List<SelectListItem> GetLunchItems(MealStatus status)
+        {
+            List<SelectListItem> items;
+            if (status == MealStatus.In)
+            {
+                items = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "1", Text = "In" },
+                    new SelectListItem { Value = "2", Text = "Out" },
+                    new SelectListItem { Value = "3", Text = "Early" },
+                    new SelectListItem { Value = "4", Text = "Late" },
+                    new SelectListItem { Value = "5", Text = "Walkthrough" }
+
+                };
+                return items;
+            }
+
+            else if (status == MealStatus.Out)
+            {
+                items = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "2", Text = "Out" },
+                    new SelectListItem { Value = "1", Text = "In" },
+                    new SelectListItem { Value = "3", Text = "Early" },
+                    new SelectListItem { Value = "4", Text = "Late" },
+                    new SelectListItem { Value = "5", Text = "Walkthrough" }
+                };
+                return items;
+            }
+
+            else if (status == MealStatus.Early)
+            {
+                items = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "3", Text = "Early" },
+                    new SelectListItem { Value = "1", Text = "In" },
+                    new SelectListItem { Value = "2", Text = "Out" },
+                    new SelectListItem { Value = "4", Text = "Late" },
+                    new SelectListItem { Value = "5", Text = "Walkthrough" }
+                };
+                return items;
+            }
+            else if (status == MealStatus.Late)
+            {
+                items = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "4", Text = "Late" },
+                    new SelectListItem { Value = "1", Text = "In" },
+                    new SelectListItem { Value = "2", Text = "Out" },
+                    new SelectListItem { Value = "3", Text = "Early" },
+                    new SelectListItem { Value = "5", Text = "Walkthrough" }
+                };
+                return items;
+            }
+            else
+            {
+                items = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "5", Text = "Walkthrough" },
+                    new SelectListItem { Value = "4", Text = "Late" },
+                    new SelectListItem { Value = "1", Text = "In" },
+                    new SelectListItem { Value = "2", Text = "Out" },
+                    new SelectListItem { Value = "3", Text = "Early" }
+                };
+                return items;
+            }
+        }
+
+        public List<SelectListItem> GetDinnerItems(MealStatus status)
         {
             List<SelectListItem> items;
             if (status == MealStatus.In)

@@ -2,7 +2,10 @@
 @model Website.Pages.PermaSignUpModel
 @{
 }
-<link rel="stylesheet" href="~/css/PermanentSignUpFormat.css" />
+
+<head>
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
 
 <form method="post">
     <div>
@@ -36,7 +39,7 @@
                         <th>Lunch</th>
                         @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
                         {
-                            var Items = Model.GetItems(Model.MemberToShow.DefaultSignUp[i]);
+                            var Items = Model.GetLunchItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
@@ -46,7 +49,7 @@
                         <th>Dinner</th>
                         @for (int i = 1; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
                         {
-                            var Items = Model.GetItems(Model.MemberToShow.DefaultSignUp[i]);
+                            var Items = Model.GetDinnerItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>

@@ -5,22 +5,6 @@
     --fh-light-green: #eaf4ed;
 }
 
-body {
-    background-color: var(--fh-light-green);
-    font-family: Arial, sans-serif;
-    color: var(--fh-green);
-    margin: 0;
-    padding: 20px;
-}
-
-/* Page title */
-h1.display-4 {
-    text-align: center;
-    color: var(--fh-green);
-    border-bottom: 3px solid var(--fh-gold);
-    padding-bottom: 10px;
-}
-
 /* Tables */
 .TreasurerTable {
     border-collapse: collapse;
@@ -33,20 +17,16 @@ h1.display-4 {
     overflow: hidden;
 }
 
-    .TreasurerTable th, .TreasurerTable td {
-        border: 1px solid var(--fh-green);
-        padding: 8px;
-        text-align: center;
-    }
+.TreasurerTable th, .TreasurerTable td {
+    border: 1px solid var(--fh-green);
+    padding: 8px;
+    text-align: center;
+}
 
-    .TreasurerTable th {
-        background-color: var(--fh-gold);
-        color: var(--fh-green);
-    }
-
-    .TreasurerTable tbody tr:nth-child(even) {
-        background-color: #f0f4f0;
-    }
+.TreasurerTable th {
+    background-color: var(--fh-gold);
+    color: var(--fh-green);
+}
 
 /* Responsive for phones */
 @media (max-width: 768px) {

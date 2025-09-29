@@ -5,22 +5,6 @@
     --fh-light-green: #eaf4ed;
 }
 
-body {
-    background-color: var(--fh-light-green);
-    font-family: Arial, sans-serif;
-    color: var(--fh-green);
-    margin: 0;
-    padding: 20px;
-}
-
-/* Page title */
-h3 {
-    text-align: center;
-    color: var(--fh-green);
-    border-bottom: 3px solid var(--fh-gold);
-    padding-bottom: 10px;
-}
-
 /* Day buttons */
 .day-buttons {
     display: flex;
