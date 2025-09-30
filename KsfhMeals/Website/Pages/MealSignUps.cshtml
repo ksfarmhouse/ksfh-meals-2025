@@ -12,6 +12,14 @@
         <h3>Enter ID</h3>
         <input type="text" asp-for="ID" placeholder="ID" />
         <input type="submit" value="Enter" />
+
+        @if (Model.MemberToShow != null)
+        {
+            <p class="member-name">
+                <strong>Member:</strong> @Model.MemberToShow.FirstName @Model.MemberToShow.LastName 
+            </p>
+        }
+
         <p class="text-center">
             This is the weekly meal sign-up. If you have a meeting or any event that causes you to miss a meal, mark it here.
             Your schedule will revert to your default plan at the end of each week.
@@ -23,7 +31,7 @@
         {
             <input type="hidden" asp-for="MemberID" />
 
-            <table class="MenuTable">
+            <table>
                 <thead>
                     <tr>
                         <th></th>
@@ -35,21 +43,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Lunch row -->
                     <tr>
                         <th>Lunch</th>
-                        @for (int i = 0; i < Model.MemberToShow.TempSignUp.Length; i += 2)
+                        @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
                         {
-                            var Items = Model.GetLunchItems(Model.MemberToShow.TempSignUp[i]);
+                            var Items = Model.GetLunchItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
                         }
                     </tr>
+
+                    <!-- Dinner row -->
                     <tr>
                         <th>Dinner</th>
-                        @for (int i = 1; i < Model.MemberToShow.TempSignUp.Length; i += 2)
+                        @for (int i = 1; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
                         {
-                            var Items = Model.GetDinnerItems(Model.MemberToShow.TempSignUp[i]);
+                            var Items = Model.GetDinnerItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
@@ -57,6 +68,33 @@
                     </tr>
                 </tbody>
             </table>
+
+            <p></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- Saturday Lunch -->
+                        <td>
+                            <select asp-items="Model.GetLunchItems(Model.MemberToShow!.TempSignUp[10])"
+                                    name="@Model.comboBoxNames[10]"></select>
+                        </td>
+
+                        <!-- Sunday Lunch -->
+                        <td>
+                            <select asp-items="Model.GetLunchItems(Model.MemberToShow.TempSignUp[11])"
+                                    name="@Model.comboBoxNames[11]"></select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
 
 
             <div class="text-center admin-action">

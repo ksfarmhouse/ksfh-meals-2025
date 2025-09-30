@@ -5,6 +5,10 @@
     --fh-light-green: #eaf4ed;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /*---------------------------------------
 General Styles
 ---------------------------------------*/
@@ -34,20 +38,24 @@ table {
     margin: 0 auto;
 }
 
+th, td {
+    padding: 8px;
+    border: 1px solid var(--fh-green);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
 th {
     background-color: var(--fh-green);
     color: var(--fh-white);
     font-weight: bold;
-    padding: 8px;
-    border: 1px solid var(--fh-green);
 }
 
 td {
     border: 1px solid var(--fh-green);
     color: var(--fh-green);
     font-size: 14px;
-    padding: 8px;
-    border: 1px solid var(--fh-green);
 }
 
 /* Inputs inside table cells */
@@ -67,6 +75,11 @@ td {
 
 .admin-action {
     margin-top: 20px;
+}
+
+select {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /*---------------------------------------
@@ -114,8 +127,9 @@ Navbar / Admin Tabs
     padding: 8px 12px;
     margin-right: 5px;
     margin-bottom: 5px;
+    margin-top: 5px;
     transition: all 0.2s ease;
-    display: inline-block;
+    text-align: center;
 }
 
 /* Hover effect */
@@ -135,6 +149,7 @@ Navbar / Admin Tabs
     background-color: var(--fh-white);
     border-bottom: 3px solid var(--fh-green);
     padding: 0.5rem 1rem;
+    text-align: center;
 }
 
 
@@ -150,7 +165,7 @@ Media / Phone Sizing
     }
 
     th, td {
-        padding: 6px;
+        padding: 4px;
         font-size: 12px;
     }
 
@@ -163,3 +178,4 @@ Media / Phone Sizing
         font-size: 12px;
     }
 }
+

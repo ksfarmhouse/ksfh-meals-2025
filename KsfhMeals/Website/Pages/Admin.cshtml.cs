@@ -27,6 +27,16 @@ namespace Website.Pages
         public string? FL { get; set; }
         [BindProperty(SupportsGet = true)]
         public string? FD { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? SA { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? SU { get; set; }
+
+        public string? SaveScheduleMessage { get; set; }
+
+        public string? SaveRolloverMessage { get; set; }
+
+        public string? SaveResetMessage { get; set; }
         public void OnGet()
         {
             ViewData["ActivePage"] = "Admin";
@@ -36,25 +46,30 @@ namespace Website.Pages
         {
             List<string> lunch = new List<string>();
 
-            lunch.Add(ML);
-            lunch.Add(TL);
-            lunch.Add(WL);
-            lunch.Add(UL);
-            lunch.Add(FL);
+            lunch.Add(ML!);
+            lunch.Add(TL!);
+            lunch.Add(WL!);
+            lunch.Add(UL!);
+            lunch.Add(FL!);
+            lunch.Add(SA!);
+            lunch.Add(SU!);
 
             List<string> dinner = new List<string>();
 
-            dinner.Add(MD);
-            dinner.Add(TD);
-            dinner.Add(WD);
-            dinner.Add(UD);
-            dinner.Add(FD);
-
-            if (!lunch.Contains(null) || !dinner.Contains(null))
+            dinner.Add(MD!);
+            dinner.Add(TD!);
+            dinner.Add(WD!);
+            dinner.Add(UD!);
+            dinner.Add(FD!);
+            if (!lunch.Contains(null!) || !dinner.Contains(null!))
             {
                 House.AddLunchItem(lunch);
                 House.AddDinnerItem(dinner);
             }
+
+            SaveScheduleMessage = "Meal Scheudle has been saved successfully!";
+            
+            
         }
 
 
@@ -82,7 +97,9 @@ namespace Website.Pages
                     m.TempSignUp[i] = m.DefaultSignUp[i];
                 }
             }
+
             House.Save();
+            SaveRolloverMessage = "Meal Rollover has been saved successfully!";
         }
 
         public IActionResult OnPostResetMeals()
@@ -101,6 +118,7 @@ namespace Website.Pages
             }
 
             House.Save();
+            SaveResetMessage = "Meal Reset has been saved successfully!";
 
             return Page();
         }

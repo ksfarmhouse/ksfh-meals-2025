@@ -41,6 +41,8 @@
                     <th>Wednesday</th>
                     <th>Thursday</th>
                     <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +52,8 @@
                     <td><input class="form-input" type="text" name="WL" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="UL" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="FL" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="SA" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="SU" placeholder="Lunch" required /></td>
                 </tr>
                 <tr> <!-- Dinner -->
                     <td><input class="form-input" type="text" name="MD" placeholder="Dinner" required /></td>
@@ -61,25 +65,47 @@
             </tbody>
         </table>
 
-        <div style="text-align:center; margin-top:20px;">
-            <input type="submit" class="btn-save" value="Save" />
+        <div class="text-center admin-action">
+            <div style="margin-top:20px;">
+                    <input type="submit" class="btn-save" value="Save" />
+            </div>
+
+            <p class="confirmation-message">
+                @Model.SaveScheduleMessage
+            </p>
+
+            <p>The "Save" button fills the menu with the new values form above.</p>
+            <p>You must input a value for every box to save.</p>
         </div>
+
     </div>
 </form>
 
 <!-- Rollover Meals -->
 <div class="text-center admin-action">
-    <p>The "Rollover Meals" button returns all temporary meals back to permanent signups.</p>
-    <p>This button also lists the out of house and alumni meals from the week and puts the meal on the treasurer page.</p>
     <form asp-page-handler="Rollover">
         <input type="submit" class="btn-rollover" value="Rollover Meals" />
     </form>
+
+    <p class="confirmation-message">
+        @Model.SaveRolloverMessage
+    </p>
+
+    <p>The "Rollover Meals" button returns all temporary meals back to permanent signups.</p>
+    <p>This button also lists the out of house and alumni meals from the week and puts the meal on the treasurer page.</p>
 </div>
+
 
 <!-- Reset Meals -->
 <div class="text-center admin-action">
-    <p>The "Reset Meals" button sets meals back to defaults based on member status.</p>
     <form asp-page-handler="ResetMeals">
         <input type="submit" class="btn-rollover" value="Reset Meals" />
     </form>
+
+    <p class="confirmation-message">
+        @Model.SaveResetMessage
+    </p>
+
+    <p>The "Reset Meals" button sets meals back to defaults based on member status.</p>
 </div>
+
