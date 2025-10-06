@@ -46,7 +46,7 @@
                     <tr>
                         <!-- Lunch row -->
                         <th>Lunch</th>
-                        @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
+                        @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length-2; i += 2)
                         {
                             var Items = Model.GetLunchItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
@@ -57,7 +57,7 @@
                     <tr>
                         <!-- Dinner row -->
                         <th>Dinner</th>
-                        @for (int i = 1; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
+                        @for (int i = 1; i < Model.MemberToShow.DefaultSignUp.Length-2; i += 2)
                         {
                             var Items = Model.GetDinnerItems(Model.MemberToShow.DefaultSignUp[i]);
                             <td>
@@ -81,18 +81,30 @@
                     <tr>
                         <!-- Saturday Lunch -->
                         <td>
-                            <select asp-items="Model.GetLunchItems(Model.MemberToShow!.TempSignUp[10])"
+                            <select asp-items="Model.GetLunchItems(Model.MemberToShow!.DefaultSignUp[10])"
                                     name="@Model.comboBoxNames[10]"></select>
                         </td>
 
                         <!-- Sunday Lunch -->
                         <td>
-                            <select asp-items="Model.GetLunchItems(Model.MemberToShow.TempSignUp[11])"
+                            <select asp-items="Model.GetLunchItems(Model.MemberToShow.DefaultSignUp[11])"
                                     name="@Model.comboBoxNames[11]"></select>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            @if (Model.MemberToShow != null)
+            {
+                <div class="text-center">
+                    <h4>Meal Statuses:</h4>
+                    <p><strong>In:</strong> At the meal</p>
+                    <p><strong>Out:</strong> Out of the meal</p>
+                    <p><strong>Late:</strong> Late plate</p>
+                    <p><strong>Early:</strong> Early plate</p>
+                    <p><strong>Tardy:</strong> Will not be at lunch until 12</p>
+                </div>
+            }
 
             <div class="text-center admin-action">
                 <input type="submit" value="Save" asp-page-handler="EditSignUp" class="btn-save" />

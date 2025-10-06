@@ -41,8 +41,6 @@
                     <th>Wednesday</th>
                     <th>Thursday</th>
                     <th>Friday</th>
-                    <th>Saturday</th>
-                    <th>Sunday</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,19 +48,34 @@
                     <td><input class="form-input" type="text" name="ML" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="TL" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="WL" placeholder="Lunch" required /></td>
-                    <td><input class="form-input" type="text" name="UL" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="THL" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="FL" placeholder="Lunch" required /></td>
-                    <td><input class="form-input" type="text" name="SA" placeholder="Lunch" required /></td>
-                    <td><input class="form-input" type="text" name="SU" placeholder="Lunch" required /></td>
                 </tr>
                 <tr> <!-- Dinner -->
                     <td><input class="form-input" type="text" name="MD" placeholder="Dinner" required /></td>
                     <td><input class="form-input" type="text" name="TD" placeholder="Dinner" required /></td>
                     <td><input class="form-input" type="text" name="WD" placeholder="Dinner" required /></td>
-                    <td><input class="form-input" type="text" name="UD" placeholder="Dinner" required /></td>
+                    <td><input class="form-input" type="text" name="THD" placeholder="Dinner" required /></td>
                     <td><input class="form-input" type="text" name="FD" placeholder="Dinner" required /></td>
                 </tr>
             </tbody>
+        </table>
+
+        <!-- Weekend -->
+        <table class="MenuTable" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="form-input" type="text" name="SA" placeholder="Lunch" required /></td>
+                    <td><input class="form-input" type="text" name="SU" placeholder="Lunch" required /></td>
+                </tr>
+            </tbody>
+
         </table>
 
         <div class="text-center admin-action">
@@ -84,7 +97,7 @@
 <!-- Rollover Meals -->
 <div class="text-center admin-action">
     <form asp-page-handler="Rollover">
-        <input type="submit" class="btn-rollover" value="Rollover Meals" />
+        <input type="submit" class="btn-save" value="Rollover Meals" />
     </form>
 
     <p class="confirmation-message">
@@ -99,7 +112,7 @@
 <!-- Reset Meals -->
 <div class="text-center admin-action">
     <form asp-page-handler="ResetMeals">
-        <input type="submit" class="btn-rollover" value="Reset Meals" />
+        <input type="submit" class="btn-save" value="Reset Meals" />
     </form>
 
     <p class="confirmation-message">
@@ -107,5 +120,18 @@
     </p>
 
     <p>The "Reset Meals" button sets meals back to defaults based on member status.</p>
+</div>
+
+<!-- Change New Members to In House -->
+<div class="text-center admin-action">
+    <form asp-page-handler="UpdateNM">
+        <input type="submit" class="btn-save" value="Update New Members" />
+    </form>
+
+    <p class="confirmation-message">
+        @Model.UpdateNMMessage
+    </p>
+
+    <p>The "Update New Members" button gives all New Members the "In House" status.</p>
 </div>
 

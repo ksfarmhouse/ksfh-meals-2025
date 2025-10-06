@@ -46,9 +46,9 @@
                     <!-- Lunch row -->
                     <tr>
                         <th>Lunch</th>
-                        @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
+                        @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length-2; i += 2)
                         {
-                            var Items = Model.GetLunchItems(Model.MemberToShow.DefaultSignUp[i]);
+                            var Items = Model.GetLunchItems(Model.MemberToShow.TempSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
@@ -58,9 +58,9 @@
                     <!-- Dinner row -->
                     <tr>
                         <th>Dinner</th>
-                        @for (int i = 1; i < Model.MemberToShow.DefaultSignUp.Length; i += 2)
+                        @for (int i = 1; i < Model.MemberToShow.TempSignUp.Length - 2; i += 2)
                         {
-                            var Items = Model.GetDinnerItems(Model.MemberToShow.DefaultSignUp[i]);
+                            var Items = Model.GetDinnerItems(Model.MemberToShow.TempSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
@@ -95,7 +95,17 @@
                 </tbody>
             </table>
 
-
+            @if (Model.MemberToShow != null)
+            {
+                <div class="text-center">
+                    <h4>Meal Statuses:</h4>
+                    <p><strong>In:</strong> At the meal</p>
+                    <p><strong>Out:</strong> Out of the meal</p>
+                    <p><strong>Late:</strong> Late plate</p>
+                    <p><strong>Early:</strong> Early plate</p>
+                    <p><strong>Tardy:</strong> Will not be at lunch until 12</p>
+                </div>
+            }
 
             <div class="text-center admin-action">
                 <input type="submit" value="Save" asp-page-handler="EditSignUp" class="btn-save" />

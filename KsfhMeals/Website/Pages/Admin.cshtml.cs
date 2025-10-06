@@ -9,26 +9,48 @@ namespace Website.Pages
     {
         [BindProperty(SupportsGet = true)]
         public string? ML { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? MD { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? TL { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? TD { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? WL { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? WD { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
-        public string? UL { get; set; }
+        public string? THL { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
-        public string? UD { get; set; }
+        public string? THD { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? FL { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? FD { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? SA { get; set; }
+
+
         [BindProperty(SupportsGet = true)]
         public string? SU { get; set; }
 
@@ -37,6 +59,8 @@ namespace Website.Pages
         public string? SaveRolloverMessage { get; set; }
 
         public string? SaveResetMessage { get; set; }
+        public string? UpdateNMMessage { get; set; }
+
         public void OnGet()
         {
             ViewData["ActivePage"] = "Admin";
@@ -49,7 +73,7 @@ namespace Website.Pages
             lunch.Add(ML!);
             lunch.Add(TL!);
             lunch.Add(WL!);
-            lunch.Add(UL!);
+            lunch.Add(THL!);
             lunch.Add(FL!);
             lunch.Add(SA!);
             lunch.Add(SU!);
@@ -59,17 +83,16 @@ namespace Website.Pages
             dinner.Add(MD!);
             dinner.Add(TD!);
             dinner.Add(WD!);
-            dinner.Add(UD!);
+            dinner.Add(THD!);
             dinner.Add(FD!);
+
             if (!lunch.Contains(null!) || !dinner.Contains(null!))
             {
                 House.AddLunchItem(lunch);
                 House.AddDinnerItem(dinner);
-            }
 
-            SaveScheduleMessage = "Meal Scheudle has been saved successfully!";
-            
-            
+                SaveScheduleMessage = "Meal Scheudle has been saved successfully!";
+            }
         }
 
 
@@ -77,21 +100,15 @@ namespace Website.Pages
         {
             foreach (Member m in House.AllMembers)
             {
-                for (int i = 0; i < m.TempSignUp.Count(); i++)
+                for (int i = 0; i < m.TempSignUp.Length; i++)
                 {
-                    if (i % 2 == 0)
+                    bool isLunch = (i % 2 == 0) || (i >= 10); // weekday lunch OR weekend lunch
+                    bool isDinner = (i % 2 == 1 && i < 10);   // only Mon–Fri dinners
+
+                    if (m.HouseStatus == Status.OutOfHouse && m.TempSignUp[i] != MealStatus.Out )
                     {
-                        if ((m.HouseStatus == Status.OutOfHouse) && m.TempSignUp[i] == MealStatus.In)
-                        {
-                            m.LunchCount++;
-                        }
-                    }
-                    else
-                    {
-                        if ((m.HouseStatus == Status.OutOfHouse) && m.TempSignUp[i] == MealStatus.In)
-                        {
-                            m.DinnerCount++;
-                        }
+                        if (isLunch) m.LunchCount++;
+                        if (isDinner) m.DinnerCount++;
                     }
 
                     m.TempSignUp[i] = m.DefaultSignUp[i];
@@ -107,11 +124,11 @@ namespace Website.Pages
             foreach (Member m in House.AllMembers)
             {
                 if (m.HouseStatus == Status.InHouse || m.HouseStatus == Status.NewMember)
-                    m.DefaultSignUp = new MealStatus[] { MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, };
+                    m.DefaultSignUp = Enumerable.Repeat(MealStatus.In, 12).ToArray();
 
                 else
                 {
-                    m.DefaultSignUp = new MealStatus[] { MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out };
+                    m.DefaultSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
                     m.DinnerCount = 0;
                     m.LunchCount = 0;
                 }
@@ -121,6 +138,20 @@ namespace Website.Pages
             SaveResetMessage = "Meal Reset has been saved successfully!";
 
             return Page();
+        }
+
+        public void OnPostUpdateNM()
+        {
+            foreach (Member m in House.AllMembers)
+            {
+                if (m.HouseStatus == Status.NewMember)
+                {
+                    m.HouseStatus = Status.InHouse;
+                }
+            }
+
+            House.Save();
+            UpdateNMMessage = "All New Members are now In House Members";
         }
     }
 }

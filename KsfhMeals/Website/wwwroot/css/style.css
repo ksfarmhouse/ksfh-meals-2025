@@ -5,9 +5,6 @@
     --fh-light-green: #eaf4ed;
 }
 
-*, *::before, *::after {
-    box-sizing: border-box;
-}
 
 /*---------------------------------------
 General Styles
@@ -20,6 +17,7 @@ body {
     color: var(--fh-green);
     margin: 0;
     padding: 20px;
+    overflow-x: hidden;
 }
 
 /* Page title */
@@ -37,6 +35,41 @@ table {
     border-collapse: collapse;
     margin: 0 auto;
 }
+
+/* Weekday table — fill width */
+.WeekdayTable {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    background-color: var(--fh-white);
+    margin: 0 auto 20px auto;
+    table-layout: fixed;
+}
+
+.WeekdayTable th, .WeekdayTable td {
+    padding: 6px;
+    font-size: clamp(14px, 2vw, 16px);
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* Weekend table — proportional, centered, not stretched */
+.WeekendTable {
+    display: table;
+    max-width: 50%;
+    border-collapse: collapse;
+    background-color: var(--fh-white);
+    margin: 0 auto 20px auto;
+    table-layout: auto;
+}
+
+.WeekendTable th, .WeekendTable td {
+    padding: 4px;
+    font-size: clamp(14px, 2vw, 16px);
+    word-wrap: break-word;
+    white-space: normal;
+}
+
 
 th, td {
     padding: 8px;
@@ -58,6 +91,14 @@ td {
     font-size: 14px;
 }
 
+.top-left-logo {
+    position: fixed;
+    top: 160px;
+    right: 30px;
+    width: 100px;
+}
+
+
 /* Inputs inside table cells */
 .form-input {
     width: 100%;
@@ -71,6 +112,7 @@ td {
 .text-center {
     text-align: center;
     margin-top: 10px;
+    overflow-x: auto;
 }
 
 .admin-action {
@@ -87,7 +129,7 @@ Buttons
 ---------------------------------------*/
 
 
-.btn-save, .btn-rollover {
+.btn-save {
     background-color: var(--fh-green);
     color: var(--fh-white);
     border: 1px solid var(--fh-green);
@@ -96,9 +138,10 @@ Buttons
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
+    text-align: center;
 }
 
-.btn-save:hover, .btn-rollover:hover {
+.btn-save:hover {
     background-color: var(--fh-gold);
     color: var(--fh-green);
     border-color: var(--fh-gold);
@@ -119,22 +162,27 @@ Buttons
 Navbar / Admin Tabs
 ---------------------------------------*/
 /* Navbar links */
+.navbar-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .navbar-nav .nav-link {
     background-color: var(--fh-white);
     color: var(--fh-green);
     border: 2px solid var(--fh-green);
     border-radius: 5px;
-    padding: 8px 12px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    padding: clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 14px);
+    margin: 5px;
     transition: all 0.2s ease;
     text-align: center;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    white-space: nowrap;
 }
 
 /* Hover effect */
 .navbar-nav .nav-link:hover {
-    background-color: var(--fh-gold); /* yellow/gold */
+    background-color: var(--fh-gold);
     color: var(--fh-green);
 }
 
@@ -158,12 +206,6 @@ Navbar / Admin Tabs
 Media / Phone Sizing
 ---------------------------------------*/
 @media (max-width: 768px) {
-    table {
-        width: 100%;
-        overflow-x: auto;
-        display: block;
-    }
-
     th, td {
         padding: 4px;
         font-size: 12px;
@@ -173,9 +215,14 @@ Media / Phone Sizing
         font-size: 12px;
     }
 
-    .btn-save, .btn-rollover {
+    .btn-save {
         padding: 6px 12px;
         font-size: 12px;
+    }
+
+    body {
+        padding: 10px;
+        overflow-x: hidden;
     }
 }
 

@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 
+<h1 class="title">Weekly Meals</h1>
+<!-- Main Menu Table (Mon–Fri) -->
+ <!-- Weekend Lunch Table (Sat–Sun) -->
 <div class="text-center">
-    <h1 class="title">Weekly Meals</h1>
-</div>
-
-<div class="text-center">
-    <table class="MenuTable">
+    <!-- Main Menu Table (Mon–Fri) -->
+    <table class="WeekdayTable">
         <thead>
             <tr>
                 <th>Monday</th>
@@ -21,13 +21,11 @@
                 <th>Wednesday</th>
                 <th>Thursday</th>
                 <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                @foreach (string s in Model.LunchMenu)
+                @foreach (string s in Model.LunchMenu.Take(5))
                 {
                     <td>@s</td>
                 }
@@ -35,6 +33,24 @@
 
             <tr>
                 @foreach (string s in Model.DinnerMenu)
+                {
+                    <td>@s</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Weekend Lunch Table (Sat–Sun) -->
+    <table class="WeekendTable" style="margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>Saturday</th>
+                <th>Sunday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (string s in Model.LunchMenu.Skip(5))
                 {
                     <td>@s</td>
                 }

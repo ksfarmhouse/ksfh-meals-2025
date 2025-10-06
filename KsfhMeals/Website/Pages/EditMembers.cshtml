@@ -30,41 +30,39 @@
     </div>
 </nav>
 
-<h1 class="title" style="text-align:center; margin-bottom:20px;">Manage House Members</h1>
+<h1 class="title">Manage House Members</h1>
 
 <!-- Add Member Form -->
 <form method="post" asp-page-handler="New">
-    <div id="AddMember">
-        <table class="MenuTable">
-            <thead>
-                <tr>
-                    <th colspan="2">Add Member</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input class="form-input" type="text" name="First" placeholder="First Name" required /></td>
-                    <td><input class="form-input" type="text" name="Last" placeholder="Last Name" required /></td>
-                </tr>
-                <tr>
-                    <td><input class="form-input" type="text" name="ID" placeholder="ID" required /></td>
-                    <td>
-                        <select class="form-input" asp-for="SelectedStatus" asp-items="Model.Items"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align:center; margin-top:10px;">
-                        <input type="submit" class="btn-save" value="Add Member" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Add Member</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input class="form-input" type="text" name="First" placeholder="First Name" required /></td>
+                <td><input class="form-input" type="text" name="Last" placeholder="Last Name" required /></td>
+            </tr>
+            <tr>
+                <td><input class="form-input" type="text" name="ID" placeholder="ID" required /></td>
+                <td>
+                    <select class="form-input" asp-for="SelectedStatus" asp-items="Model.Items"></select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center; margin-top:10px;">
+                    <input type="submit" class="btn-save" value="Add Member" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
-
+<p></p>
 <!-- Update & Remove Members Form -->
 <form method="post" asp-page-handler="Edit">
-    <table class="MenuTable">
+    <table>
         <thead>
             <tr>
                 <th>Last Name</th>
@@ -84,8 +82,8 @@
                     <td>
                         <select class="form-input" asp-for="SelectedEditStatus" name="@Model.ComboBoxNames[Model.Index]" asp-items="@Model.GetOtherStatus(m.HouseStatus)"></select>
                     </td>
-                    <td style="text-align:center;">
-                        <button type="submit" class="btn-rollover" asp-page-handler="Remove" name="RemoveMember" value="@m.ID.ToString()">Remove</button>
+                    <td>
+                        <button type="submit" class="btn-save" asp-page-handler="Remove" name="RemoveMember" value="@m.ID.ToString()">Remove</button>
                     </td>
                 </tr>
                 Model.Index++;
@@ -93,7 +91,7 @@
         </tbody>
     </table>
 
-    <div style="text-align:center; margin-top:20px;">
+    <div class="text-center">
         <input type="submit" class="btn-save" value="Update Members" />
     </div>
 </form>

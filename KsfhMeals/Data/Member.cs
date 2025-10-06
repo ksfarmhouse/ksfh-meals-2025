@@ -18,11 +18,11 @@
             MealStatus[] defaultSignUp;
             if(houseStatus == Status.InHouse || houseStatus == Status.NewMember) 
             {
-                defaultSignUp = new MealStatus[] { MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.Out};
+                defaultSignUp = Enumerable.Repeat(MealStatus.In, 12).ToArray();
             }
             else
             {
-                defaultSignUp = new MealStatus[] { MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out};
+                defaultSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
             }
             ID = iD;
             FirstName = firstName;

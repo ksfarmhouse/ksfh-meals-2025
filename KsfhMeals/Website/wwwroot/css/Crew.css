@@ -1,0 +1,83 @@
+﻿body {
+    background-color: #003300;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 150px repeat(5, 1fr);
+    gap: 0;
+    margin-bottom: 0;
+}
+
+.header {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+.meal-label {
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    padding-left: 30px;
+    font-size: 0.85rem;
+}
+
+.crewinput {
+    padding: 2px 5px;
+    font-size: 0.85rem;
+    border: 1px solid black;
+    border-radius: 0;
+    color: black;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+    .crewinput.active {
+        background-color: #ccc;
+        text-align: center;
+    }
+
+    .crewinput.new {
+        background-color: #fff;
+        text-align: center;
+    }
+
+.spacer-row {
+    height: 12px;
+}
+
+/* Print styles */
+@media print {
+    navbar * {
+        visibility: hidden;
+    }
+
+    body {
+        background-color: #003300 !important; /* Keep dark green background */
+        -webkit-print-color-adjust: exact; /* Ensure background prints */
+        print-color-adjust: exact;
+        color: white;
+    }
+
+    .title,
+    .row {
+        visibility: visible;
+        position: relative;
+    }
+
+    @page {
+        size: letter landscape; /* Set horizontal layout */
+        margin: 0.5in;
+    }
+}

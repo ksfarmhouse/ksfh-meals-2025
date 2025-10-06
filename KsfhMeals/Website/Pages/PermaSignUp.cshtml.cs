@@ -44,123 +44,29 @@ namespace Website.Pages
 
         public string? SaveConfirmationMessage { get; set; }
 
-        public List<SelectListItem> GetLunchItems(MealStatus status)
+        // Returns lunch items with the current status selected
+        public List<SelectListItem> GetLunchItems(MealStatus currentStatus)
         {
-            List<SelectListItem> items;
-            if (status == MealStatus.In)
+            return new List<SelectListItem>
             {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "3", Text = "Early" },
-                    new SelectListItem { Value = "4", Text = "Late" },
-                    new SelectListItem { Value = "5", Text = "Tardy" }
-
-                };
-                return items;
-            }
-
-            else if (status == MealStatus.Out)
-            {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "3", Text = "Early" },
-                    new SelectListItem { Value = "4", Text = "Late" },
-                    new SelectListItem { Value = "5", Text = "Tardy" }
-                };
-                return items;
-            }
-
-            else if (status == MealStatus.Early)
-            {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "3", Text = "Early" },
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "4", Text = "Late" },
-                    new SelectListItem { Value = "5", Text = "Tardy" }
-                };
-                return items;
-            }
-            else if (status == MealStatus.Late)
-            {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "4", Text = "Late" },
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "3", Text = "Early" },
-                    new SelectListItem { Value = "5", Text = "Tardy" }
-                };
-                return items;
-            }
-            else
-            {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "5", Text = "Tardy" },
-                    new SelectListItem { Value = "4", Text = "Late" },
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "3", Text = "Early" }
-                };
-                return items;
-            }
+                new SelectListItem { Value = "1", Text = "In", Selected = currentStatus == MealStatus.In },
+                new SelectListItem { Value = "2", Text = "Out", Selected = currentStatus == MealStatus.Out },
+                new SelectListItem { Value = "3", Text = "Early", Selected = currentStatus == MealStatus.Early },
+                new SelectListItem { Value = "4", Text = "Late", Selected = currentStatus == MealStatus.Late },
+                new SelectListItem { Value = "5", Text = "Tardy", Selected = currentStatus == MealStatus.Tardy }
+            };
         }
 
-        public List<SelectListItem> GetDinnerItems(MealStatus status)
+        // Returns dinner items with the current status selected (no Tardy)
+        public List<SelectListItem> GetDinnerItems(MealStatus currentStatus)
         {
-            List<SelectListItem> items;
-            if (status == MealStatus.In)
+            return new List<SelectListItem>
             {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "3", Text = "Early" },
-                    new SelectListItem { Value = "4", Text = "Late" }
-                };
-                return items;
-            }
-
-            else if (status == MealStatus.Out)
-            {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "3", Text = "Early" },
-                    new SelectListItem { Value = "4", Text = "Late" }
-                };
-                return items;
-            }
-
-            else if (status == MealStatus.Early)
-            {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "3", Text = "Early" },
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "4", Text = "Late" }
-                };
-                return items;
-            }
-            else
-            {
-                items = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "4", Text = "Late" },
-                    new SelectListItem { Value = "1", Text = "In" },
-                    new SelectListItem { Value = "2", Text = "Out" },
-                    new SelectListItem { Value = "3", Text = "Early" }
-                };
-                return items;
-            }
+                new SelectListItem { Value = "1", Text = "In", Selected = currentStatus == MealStatus.In },
+                new SelectListItem { Value = "2", Text = "Out", Selected = currentStatus == MealStatus.Out },
+                new SelectListItem { Value = "3", Text = "Early", Selected = currentStatus == MealStatus.Early },
+                new SelectListItem { Value = "4", Text = "Late", Selected = currentStatus == MealStatus.Late }
+            };
         }
 
         public string[] comboBoxNames = new string[]
@@ -184,26 +90,16 @@ namespace Website.Pages
             {
                 string value = Request.Form[comboBoxNames[i]]!;
 
-                if (value == "1")
+                MemberToShow.DefaultSignUp[i] = value switch
                 {
-                    MemberToShow.DefaultSignUp[i] = MealStatus.In;
-                }
-                else if (value == "2")
-                {
-                    MemberToShow.DefaultSignUp[i] = MealStatus.Out;
-                }
-                else if (value == "3")
-                {
-                    MemberToShow.DefaultSignUp[i] = MealStatus.Early;
-                }
-                else if (value == "4")
-                {
-                    MemberToShow.TempSignUp[i] = MealStatus.Late;
-                }
-                else
-                {
-                    MemberToShow.TempSignUp[i] = MealStatus.Tardy;
-                }
+                    "1" => MealStatus.In,
+                    "2" => MealStatus.Out,
+                    "3" => MealStatus.Early,
+                    "4" => MealStatus.Late,
+                    "5" => MealStatus.Tardy,
+                    _ => MemberToShow.DefaultSignUp[i] // fallback to existing value
+                };
+
                 MemberToShow.TempSignUp[i] = MemberToShow.DefaultSignUp[i];
 
                 SaveConfirmationMessage = "Your meal sign-up has been saved successfully!";

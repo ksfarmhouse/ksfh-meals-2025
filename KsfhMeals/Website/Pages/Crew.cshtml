@@ -1,0 +1,167 @@
+﻿@page
+@model Website.Pages.CookModel
+@{
+	ViewData["Title"] = "Crew";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/crew.css" />
+</head>
+
+<img src="~/images/FHBasicCrest.png" alt="FH Crest" class="top-left-logo" />
+
+
+<h1 class="title">@Model.SeasonAndYear Meal Crews</h1>
+
+<!-- Weekdays header -->
+<div class="row header-row">
+	<div class="header"></div>
+	<div class="header">Monday</div>
+	<div class="header">Tuesday</div>
+	<div class="header">Wednesday</div>
+	<div class="header">Thursday</div>
+	<div class="header">Friday</div>
+</div>
+
+<!-- Breakfast (Actives) -->
+<div class="row meal-row">
+	<div class="meal-label">Breakfast</div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<!-- 6 A.M. (Actives) -->
+<div class="row meal-row">
+	<div class="meal-label">6 A.M.</div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<!-- Blank spacer row -->
+<div class="row spacer-row"></div>
+
+<!-- Early Lunch -->
+<div class="row meal-row">
+	<div class="meal-label">Early Lunch</div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<!-- 11:00-12:05 (New Members) -->
+<div class="row meal-row">
+	<div class="meal-label">11:00-12:05</div>
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+</div>
+
+<div class="row spacer-row"></div>
+
+<!-- Kitchen Helper (Actives) -->
+<div class="row meal-row">
+	<div class="meal-label">Kitchen Helper</div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<div class="row spacer-row"></div>
+
+<!-- Late Lunch -->
+<div class="row meal-row">
+	<div class="meal-label">Late Lunch</div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<!-- 12:05-DONE (New Members) -->
+<div class="row meal-row">
+	<div class="meal-label">12:05-DONE</div>
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+</div>
+
+<!-- Extra Late Lunch row (New Members) -->
+<div class="row meal-row">
+	<div class="meal-label"></div>
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+</div>
+
+<div class="row spacer-row"></div>
+
+<!-- Dinner (6 lines) -->
+<div class="row meal-row">
+	<div class="meal-label">Dinner</div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<div class="row meal-row">
+	<div class="meal-label">5:00 P.M.</div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<div class="row meal-row">
+	<div class="meal-label"></div>
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput active" placeholder="Active">
+</div>
+
+<div class="row meal-row">
+	<div class="meal-label"></div>
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput new" placeholder="New Member">
+	<!-- skip 5th column -->
+</div>
+
+<div class="row meal-row">
+	<div class="meal-label"></div>
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput active" placeholder="Active">
+	<input class="crewinput new" placeholder="New Member">
+	<!-- skip 5th column -->
+</div>
+
+<div class="row meal-row">
+	<div class="meal-label"></div>
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput new" placeholder="New Member">
+	<input class="crewinput active" placeholder="Active">
+	<!-- skip 4th and 5th column -->
+</div>
