@@ -99,13 +99,10 @@ namespace Website.Pages
                     "5" => MealStatus.Tardy,
                     _ => MemberToShow.DefaultSignUp[i] // fallback to existing value
                 };
-
-                MemberToShow.TempSignUp[i] = MemberToShow.DefaultSignUp[i];
-
-                SaveConfirmationMessage = "Your meal sign-up has been saved successfully!";
             }
-            
+
             House.Save();
+            SaveConfirmationMessage = "Your meal sign-up has been saved successfully!";
             return Page();
         }
     }
