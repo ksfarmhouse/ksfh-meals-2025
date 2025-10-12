@@ -57,21 +57,35 @@
         },
         "compile": {
           "lib/net8.0/System.Data.SqlClient.dll": {
-            "related": ".xml"
+            "related": ".xml;.xml"
+          },
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml;.xml"
           }
         },
         "runtime": {
           "lib/net8.0/System.Data.SqlClient.dll": {
-            "related": ".xml"
+            "related": ".xml;.xml"
+          },
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml;.xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
+          "buildTransitive/net8.0/_._": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll": {
             "assetType": "runtime",
             "rid": "unix"
+          },
+          "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "win"
           },
           "runtimes/win/lib/net8.0/System.Data.SqlClient.dll": {
             "assetType": "runtime",
@@ -81,7 +95,7 @@
       },
       "Data/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
           "System.Data.SqlClient": "4.9.0"
@@ -242,11 +256,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Website\\Website.csproj",
+      "projectUniqueName": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2025\\KsfhMeals\\Website\\Website.csproj",
       "projectName": "Website",
-      "projectPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Website\\Website.csproj",
+      "projectPath": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2025\\KsfhMeals\\Website\\Website.csproj",
       "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Website\\obj\\",
+      "outputPath": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2025\\KsfhMeals\\Website\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -267,8 +281,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj"
+            "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj"
             }
           }
         }
