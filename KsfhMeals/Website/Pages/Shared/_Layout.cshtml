@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/style.css"/>
 
-    <!-- Favicon for browser tabs -->
+    <!-- icon for browser tabs -->
     <link rel="icon" type="image/png" href="~/images/FHBasicCrest.png" />
 
-    <!-- iOS bookmark / web clip icon -->
+    <!-- icon for iOS bookmark -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/images/FHBasicCrest.png">
 </head>
 <body>
@@ -28,13 +28,13 @@
                             <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Menu" ? "active" : "")" asp-area="" asp-page="/Index">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Sign Up/ View Meals" ? "active" : "")" asp-area="" asp-page="/MealSignUps">Sign Up/View Meals</a>
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Sign Up/ View Meals" ? "active" : "")" asp-area="" asp-page="/TempSignUp">Sign Up/View Meals</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Permanent Sign Up" ? "active" : "")" asp-area="" asp-page="/PermaSignUp">Permanent Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Late/Early Plates" ? "active" : "")" asp-area="" asp-page="/LatePlates">Late/Early Plates</a>
+                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Late/Early Plates" ? "active" : "")" asp-area="" asp-page="/EarlyLatePlates">Early/Late Plates</a>
                         </li>
                         <!--
                         <li class="nav-item">
