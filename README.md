@@ -5,7 +5,7 @@ This is the code behind the K-State FarmHouse meal website.
 For Formatting, HTML and CSS are used.
 For backend functions, C# is used.
 
-The main areas you would work in is the Website project.
+The main areas you would work in is the Website project:
 The wwwroot folder contains that css styling.
 The Pages folder conains every page that is used in the website.
 
