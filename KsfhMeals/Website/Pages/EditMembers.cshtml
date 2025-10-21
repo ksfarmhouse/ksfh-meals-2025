@@ -1,7 +1,7 @@
 ﻿@page
 @model Website.Pages.EditMembersModel
 @{
-    ViewData["Title"] = "Edit Members";
+    ViewData["Title"] = "Admin Menu";
     ViewData["ActiveTab"] = "EditMembers"; // sets the active tab
 }
 
@@ -9,26 +9,19 @@
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 
-<nav class="admin-navbar navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-            <ul class="navbar-nav flex-grow-1">
-                <li class="nav-item">
-                    <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMenu" ? "active" : "") text-dark"
-                       asp-area="" asp-page="/Admin">Edit Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMembers" ? "active" : "") text-dark"
-                       asp-area="" asp-page="/EditMembers">Edit Members</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<nav class="navbar-expand-sm bg-white border-bottom mb-3">
+    <ul class="navbar-nav">
+        <li>
+            <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMenu" ? "active" : "") text-dark"
+               asp-area="" asp-page="/Admin">Edit Menu</a>
+        </li>
+        <li>
+            <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMembers" ? "active" : "") text-dark"
+               asp-area="" asp-page="/EditMembers">Edit Members</a>
+        </li>
+    </ul>
 </nav>
+
 
 <h1 class="title">Manage House Members</h1>
 
