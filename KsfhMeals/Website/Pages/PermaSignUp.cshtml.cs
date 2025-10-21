@@ -99,6 +99,7 @@ namespace Website.Pages
                     "5" => MealStatus.Tardy,
                     _ => MemberToShow.DefaultSignUp[i] // fallback to existing value
                 };
+                MemberToShow.TempSignUp[i] = MemberToShow.DefaultSignUp[i];
             }
 
             House.Save();
