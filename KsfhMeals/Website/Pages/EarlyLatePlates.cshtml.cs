@@ -4,7 +4,7 @@ using Data;
 
 namespace Website.Pages
 {
-    public class LatePlatesModel : PageModel
+    public class EarlyLatePlatesModel : PageModel
     {
         public IEnumerable<Member> AllMembers => House.AllMembers;
 
@@ -33,6 +33,11 @@ namespace Website.Pages
             ViewData["ActivePage"] = "Late/Early Plates";
         }
 
+        /// <summary>
+        /// When button is clicked, 4 boxes displaying the days early and late lunch and dinner plates and how many people will be at the meal
+        /// </summary>
+        /// <param name="DaySelect">The day selected</param>
+        /// <returns>the same page with the 4 new boxes</returns>
         public IActionResult OnPost(string DaySelect)
         {
             SelectedDay = DaySelect;
@@ -57,12 +62,18 @@ namespace Website.Pages
                     lunchIndex = 4; dinnerIndex = 5;
                     break;
                 //Thursday
-                case "U":
+                case "TH":
                     lunchIndex = 6; dinnerIndex = 7;
                     break;
                 //Friday
                 case "F":
                     lunchIndex = 8; dinnerIndex = 9;
+                    break;
+                case "SA":
+                    lunchIndex = 10; dinnerIndex = -1;
+                    break;
+                case "SU":
+                    lunchIndex = 11; dinnerIndex = -1;
                     break;
                 default:
                     lunchIndex = 0; dinnerIndex = 1;
@@ -81,14 +92,18 @@ namespace Website.Pages
                 if (m.TempSignUp[lunchIndex] == MealStatus.In)
                     LunchCookCount++;
 
-                // Dinner
-                if (m.TempSignUp[dinnerIndex] == MealStatus.Late)
-                    SelectedMembersLateDinner.Add(m);
-                else if (m.TempSignUp[dinnerIndex] == MealStatus.Early)
-                    SelectedMembersEarlyDinner.Add(m);
+                if (dinnerIndex != -1)
+                {
+                    // Dinner
+                    if (m.TempSignUp[dinnerIndex] == MealStatus.Late)
+                        SelectedMembersLateDinner.Add(m);
+                    else if (m.TempSignUp[dinnerIndex] == MealStatus.Early)
+                        SelectedMembersEarlyDinner.Add(m);
 
-                if (m.TempSignUp[dinnerIndex] == MealStatus.In)
-                    DinnerCookCount++;
+                    if (m.TempSignUp[dinnerIndex] == MealStatus.In)
+                        DinnerCookCount++;
+                }
+
             }
 
             LunchTableCount = (int)Math.Ceiling(LunchCookCount / 9);

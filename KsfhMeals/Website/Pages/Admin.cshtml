@@ -1,30 +1,42 @@
 ﻿@page
-@model Website.Pages.AdminModel
+@model AdminModel
 @{
     ViewData["Title"] = "Admin Menu";
-    ViewData["ActiveTab"] = "EditMenu"; // sets the active tab
+    ViewData["ActivePage"] = "Admin";
+    ViewData["ActiveTab"] = "Edit Menu";
 }
 
 <head>
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 
+<!-- Admin navigation bar -->
 <nav class="navbar-expand-sm bg-white border-bottom mb-3">
     <ul class="navbar-nav">
+        <!-- Edit Menu tab -->
         <li>
-            <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMenu" ? "active" : "") text-dark"
-                asp-area="" asp-page="/Admin">Edit Menu</a>
+            <a class="nav-link @(ViewData["ActiveTab"]?.ToString() == "Edit Menu" ? "active" : "") text-dark"
+               asp-area=""
+               asp-page="/Admin">
+                Edit Menu
+            </a>
         </li>
+
+        <!-- Edit Members tab -->
         <li>
-            <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMembers" ? "active" : "") text-dark"
-                asp-area="" asp-page="/EditMembers">Edit Members</a>
+            <a class="nav-link @(ViewData["ActiveTab"]?.ToString() == "Edit Members" ? "active" : "") text-dark"
+               asp-area=""
+               asp-page="/EditMembers">
+                Edit Members
+            </a>
         </li>
     </ul>
 </nav>
 
-
+<!-- MAIN ADMIN CONTENT -->
 <form method="post">
     <div id="MenuEdit">
+        <!-- WEEKDAY MENU TABLE -->
         <table class="MenuTable">
             <thead>
                 <tr>
@@ -36,14 +48,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr> <!-- Lunch -->
+                <!-- Lunch Row -->
+                <tr>
                     <td><input class="form-input" type="text" name="ML" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="TL" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="WL" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="THL" placeholder="Lunch" required /></td>
                     <td><input class="form-input" type="text" name="FL" placeholder="Lunch" required /></td>
                 </tr>
-                <tr> <!-- Dinner -->
+
+                <!-- Dinner Row -->
+                <tr>
                     <td><input class="form-input" type="text" name="MD" placeholder="Dinner" required /></td>
                     <td><input class="form-input" type="text" name="TD" placeholder="Dinner" required /></td>
                     <td><input class="form-input" type="text" name="WD" placeholder="Dinner" required /></td>
@@ -53,8 +68,8 @@
             </tbody>
         </table>
 
-        <!-- Weekend -->
-        <table class="MenuTable" style="margin-top: 20px;">
+        <!-- WEEKEND MENU TABLE -->
+        <table class="MenuTable mt-4">
             <thead>
                 <tr>
                     <th>Saturday</th>
@@ -67,63 +82,49 @@
                     <td><input class="form-input" type="text" name="SU" placeholder="Lunch" required /></td>
                 </tr>
             </tbody>
-
         </table>
 
-        <div class="text-center admin-action">
-            <div style="margin-top:20px;">
-                    <input type="submit" class="btn-save" value="Save" />
-            </div>
+        <!-- SAVE BUTTON -->
+        <div class="text-center admin-action mt-4">
+            <input type="submit" class="btn-save" value="Save" />
 
-            <p class="confirmation-message">
-                @Model.SaveScheduleMessage
-            </p>
+            <p class="confirmation-message">@Model.SaveScheduleMessage</p>
 
-            <p>The "Save" button fills the menu with the new values form above.</p>
+            <p>The "Save" button updates the menu with the new values entered above.</p>
             <p>You must input a value for every box to save.</p>
         </div>
-
     </div>
 </form>
 
-<!-- Rollover Meals -->
-<div class="text-center admin-action">
+<!-- ROLLOVER MEALS SECTION -->
+<div class="text-center admin-action mt-5">
     <form asp-page-handler="Rollover">
         <input type="submit" class="btn-save" value="Rollover Meals" />
     </form>
 
-    <p class="confirmation-message">
-        @Model.SaveRolloverMessage
+    <p class="confirmation-message">@Model.SaveRolloverMessage</p>
+    <p>
+        The "Rollover Meals" button returns all temporary meals back to permanent signups.<br />
+        It also lists out-of-house and alumni meals for the Treasurer page.
     </p>
-
-    <p>The "Rollover Meals" button returns all temporary meals back to permanent signups.</p>
-    <p>This button also lists the out of house and alumni meals from the week and puts the meal on the treasurer page.</p>
 </div>
 
-
-<!-- Reset Meals -->
-<div class="text-center admin-action">
+<!-- RESET MEALS SECTION -->
+<div class="text-center admin-action mt-5">
     <form asp-page-handler="ResetMeals">
         <input type="submit" class="btn-save" value="Reset Meals" />
     </form>
 
-    <p class="confirmation-message">
-        @Model.SaveResetMessage
-    </p>
-
-    <p>The "Reset Meals" button sets meals back to defaults based on member status.</p>
+    <p class="confirmation-message">@Model.SaveResetMessage</p>
+    <p>The "Reset Meals" button resets meals back to defaults based on member status.</p>
 </div>
 
-<!-- Change New Members to In House -->
-<div class="text-center admin-action">
+<!-- UPDATE NEW MEMBERS SECTION -->
+<div class="text-center admin-action mt-5">
     <form asp-page-handler="UpdateNM">
         <input type="submit" class="btn-save" value="Update New Members" />
     </form>
 
-    <p class="confirmation-message">
-        @Model.UpdateNMMessage
-    </p>
-
+    <p class="confirmation-message">@Model.UpdateNMMessage</p>
     <p>The "Update New Members" button gives all New Members the "In House" status.</p>
 </div>
-

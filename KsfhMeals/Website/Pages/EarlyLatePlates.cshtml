@@ -1,8 +1,12 @@
 ﻿@page
-@model Website.Pages.LatePlatesModel
+@model EarlyLatePlatesModel
 @{
-}
+    // Page title for browser tab
+    ViewData["Title"] = "Early/Late Plates";
 
+    // Highlight this page in the main navbar
+    ViewData["ActivePage"] = "Early/Late Plates";
+}
 <head>
     <link rel="stylesheet" href="~/css/EarlyLatePlateFormat.css" />
     <link rel="stylesheet" href="~/css/style.css" />
@@ -11,15 +15,19 @@
 <h1 class="title">Early Plates and Late Plates</h1>
 
 <form method="post">
+    <!-- Day selection buttons -->
     <div class="day-buttons">
         <button type="submit" name="DaySelect" value="M" class="@(Model.SelectedDay == "M" ? "day-btn active" : "day-btn")">Monday</button>
         <button type="submit" name="DaySelect" value="T" class="@(Model.SelectedDay == "T" ? "day-btn active" : "day-btn")">Tuesday</button>
         <button type="submit" name="DaySelect" value="W" class="@(Model.SelectedDay == "W" ? "day-btn active" : "day-btn")">Wednesday</button>
-        <button type="submit" name="DaySelect" value="U" class="@(Model.SelectedDay == "U" ? "day-btn active" : "day-btn")">Thursday</button>
+        <button type="submit" name="DaySelect" value="TH" class="@(Model.SelectedDay == "TH" ? "day-btn active" : "day-btn")">Thursday</button>
         <button type="submit" name="DaySelect" value="F" class="@(Model.SelectedDay == "F" ? "day-btn active" : "day-btn")">Friday</button>
+        <button type="submit" name="DaySelect" value="SA" class="@(Model.SelectedDay == "SA" ? "day-btn active" : "day-btn")">Saturday</button>
+        <button type="submit" name="DaySelect" value="SU" class="@(Model.SelectedDay == "SU" ? "day-btn active" : "day-btn")">Sunday</button>
     </div>
 </form>
 
+<!-- Display plates grid if a day button was clicked -->
 @if (Model.ButtonHit == 1)
 {
     <div class="plates-grid">
@@ -61,42 +69,46 @@
             }
         </div>
 
-        <!-- Early Dinner -->
-        <div class="plate-card">
-            <h4>Early Dinner Plates (@Model.SelectedMembersEarlyDinner.Count)</h4>
-            <p>Set for @Model.DinnerCookCount Members</p>
-            <p>@Model.DinnerTableCount Tables</p>
-            @if (Model.SelectedMembersEarlyDinner.Count > 0)
-            {
-                <ul>
-                    @foreach (var member in Model.SelectedMembersEarlyDinner)
-                    {
-                        <li>@member.FullName</li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>No Early Dinner Plates</p>
-            }
-        </div>
+        @if (Model.SelectedDay != "SA" && Model.SelectedDay != "SU")
+        {
+            <!-- Early Dinner -->
+            <div class="plate-card">
+                <h4>Early Dinner Plates (@Model.SelectedMembersEarlyDinner.Count)</h4>
+                <p>Set for @Model.DinnerCookCount Members</p>
+                <p>@Model.DinnerTableCount Tables</p>
+                @if (Model.SelectedMembersEarlyDinner.Count > 0)
+                {
+                    <ul>
+                        @foreach (var member in Model.SelectedMembersEarlyDinner)
+                        {
+                            <li>@member.FullName</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No Early Dinner Plates</p>
+                }
+            </div>
 
-        <!-- Late Dinner -->
-        <div class="plate-card">
-            <h4>Late Dinner Plates (@Model.SelectedMembersLateDinner.Count)</h4>
-            @if (Model.SelectedMembersLateDinner.Count > 0)
-            {
-                <ul>
-                    @foreach (var member in Model.SelectedMembersLateDinner)
-                    {
-                        <li>@member.FullName</li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>No Late Dinner Plates</p>
-            }
-        </div>
+            <!-- Late Dinner -->
+            <div class="plate-card">
+                <h4>Late Dinner Plates (@Model.SelectedMembersLateDinner.Count)</h4>
+                @if (Model.SelectedMembersLateDinner.Count > 0)
+                {
+                    <ul>
+                        @foreach (var member in Model.SelectedMembersLateDinner)
+                        {
+                            <li>@member.FullName</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No Late Dinner Plates</p>
+                }
+            </div>
+        }
+
     </div>
 }

@@ -1,6 +1,8 @@
 ﻿@page
-@model Website.Pages.MealSignUpsModel
+@model MealSignUpsModel
 @{
+    ViewData["Title"] = "Weekly Sign Up";
+    ViewData["ActivePage"] = "Weekly Sign Up";
 }
 
 <head>
@@ -9,10 +11,12 @@
 
 <form method="post">
     <div>
+        <!-- Member ID input section -->
         <h3>Enter ID</h3>
         <input type="text" asp-for="ID" placeholder="ID" />
         <input type="submit" value="Enter" />
 
+        <!-- Show selected member name -->
         @if (Model.MemberToShow != null)
         {
             <p class="member-name">
@@ -20,6 +24,7 @@
             </p>
         }
 
+        <!-- Instructions -->
         <p class="text-center">
             This is the weekly meal sign-up. If you have a meeting or any event that causes you to miss a meal, mark it here.
             Your schedule will revert to your default plan at the end of each week.
@@ -29,11 +34,13 @@
         </p>
     </div>
 
+    <!-- Meal sign-up tables (only show if a member was selected) -->
     <div>
         @if (Model.MemberToShow != null)
         {
             <input type="hidden" asp-for="MemberID" />
 
+            <!-- Weekday Table (Mon–Fri) -->
             <table>
                 <thead>
                     <tr>
@@ -74,6 +81,7 @@
 
             <p></p>
 
+            <!-- Weekend Table (Sat–Sun) -->
             <table>
                 <thead>
                     <tr>
@@ -98,6 +106,7 @@
                 </tbody>
             </table>
 
+            <!-- Meal Status Info -->
             @if (Model.MemberToShow != null)
             {
                 <div class="text-center">
@@ -110,6 +119,7 @@
                 </div>
             }
 
+            <!-- Save Button -->
             <div class="text-center admin-action">
                 <input type="submit" value="Save" asp-page-handler="EditSignUp" class="btn-save" />
             </div>

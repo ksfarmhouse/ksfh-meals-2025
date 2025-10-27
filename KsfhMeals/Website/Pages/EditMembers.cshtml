@@ -1,90 +1,93 @@
 ﻿@page
-@model Website.Pages.EditMembersModel
+@model EditMembersModel
 @{
     ViewData["Title"] = "Admin Menu";
-    ViewData["ActiveTab"] = "EditMembers"; // sets the active tab
+    ViewData["ActivePage"] = "Admin";
+    ViewData["ActiveTab"] = "Edit Members";
 }
 
 <head>
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 
+<!-- Admin navigation bar -->
 <nav class="navbar-expand-sm bg-white border-bottom mb-3">
     <ul class="navbar-nav">
         <li>
-            <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMenu" ? "active" : "") text-dark"
+            <a class="nav-link @(ViewData["ActiveTab"] as string == "Admin Menu" ? "active" : "") text-dark"
                asp-area="" asp-page="/Admin">Edit Menu</a>
         </li>
         <li>
-            <a class="nav-link @(ViewData["ActiveTab"] as string == "EditMembers" ? "active" : "") text-dark"
+            <a class="nav-link @(ViewData["ActiveTab"] as string == "Edit Members" ? "active" : "") text-dark"
                asp-area="" asp-page="/EditMembers">Edit Members</a>
         </li>
     </ul>
 </nav>
 
+<main>
+    <h1 class="title">Manage House Members</h1>
 
-<h1 class="title">Manage House Members</h1>
-
-<!-- Add Member Form -->
-<form method="post" asp-page-handler="New">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="2">Add Member</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input class="form-input" type="text" name="First" placeholder="First Name" required /></td>
-                <td><input class="form-input" type="text" name="Last" placeholder="Last Name" required /></td>
-            </tr>
-            <tr>
-                <td><input class="form-input" type="text" name="ID" placeholder="ID" required /></td>
-                <td>
-                    <select class="form-input" asp-for="SelectedStatus" asp-items="Model.Items"></select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align:center; margin-top:10px;">
-                    <input type="submit" class="btn-save" value="Add Member" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</form>
-<p></p>
-<!-- Update & Remove Members Form -->
-<form method="post" asp-page-handler="Edit">
-    <table>
-        <thead>
-            <tr>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>ID</th>
-                <th>Status</th>
-                <th>Remove</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Data.Member m in Model.AllMembers)
-            {
+    <!-- Add Member Form -->
+    <form method="post" asp-page-handler="New">
+        <table>
+            <thead>
                 <tr>
-                    <td>@m.LastName</td>
-                    <td>@m.FirstName</td>
-                    <td>@m.ID</td>
+                    <th colspan="2">Add Member</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="form-input" type="text" name="First" placeholder="First Name" required /></td>
+                    <td><input class="form-input" type="text" name="Last" placeholder="Last Name" required /></td>
+                </tr>
+                <tr>
+                    <td><input class="form-input" type="text" name="ID" placeholder="ID" required /></td>
                     <td>
-                        <select class="form-input" asp-for="SelectedEditStatus" name="@Model.ComboBoxNames[Model.Index]" asp-items="@Model.GetOtherStatus(m.HouseStatus)"></select>
-                    </td>
-                    <td>
-                        <button type="submit" class="btn-save" asp-page-handler="Remove" name="RemoveMember" value="@m.ID.ToString()">Remove</button>
+                        <select class="form-input" asp-for="SelectedStatus" asp-items="Model.Items"></select>
                     </td>
                 </tr>
-                Model.Index++;
-            }
-        </tbody>
-    </table>
+                <tr>
+                    <td colspan="2" style="text-align:center; margin-top:10px;">
+                        <input type="submit" class="btn-save" value="Add Member" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <p></p>
+    <!-- Update & Remove Members Form -->
+    <form method="post" asp-page-handler="Edit">
+        <table>
+            <thead>
+                <tr>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Data.Member m in Model.AllMembers)
+                {
+                    <tr>
+                        <td>@m.LastName</td>
+                        <td>@m.FirstName</td>
+                        <td>@m.ID</td>
+                        <td>
+                            <select class="form-input" asp-for="SelectedEditStatus" name="@Model.ComboBoxNames[Model.Index]" asp-items="@Model.GetOtherStatus(m.HouseStatus)"></select>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn-save" asp-page-handler="Remove" name="RemoveMember" value="@m.ID.ToString()">Remove</button>
+                        </td>
+                    </tr>
+                    Model.Index++;
+                }
+            </tbody>
+        </table>
 
-    <div class="text-center">
-        <input type="submit" class="btn-save" value="Update Members" />
-    </div>
-</form>
+        <div class="text-center">
+            <input type="submit" class="btn-save" value="Update Members" />
+        </div>
+    </form>
+</main>

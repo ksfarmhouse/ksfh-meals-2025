@@ -1,18 +1,23 @@
 ﻿@page
-@model Website.Pages.PermaSignUpModel
+@model PermaSignUpModel
 @{
+    ViewData["Title"] = "Permanent Sign Up";
+    ViewData["ActivePage"] = "Permanent Sign Up";
 }
+
 
 <head>
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 
+<!-- Member ID input section -->
 <form method="post">
     <div>
         <h3>Enter ID</h3>
         <input type="text" asp-for="ID" placeholder="ID" />
         <input type="submit" value="Enter" />
 
+        <!-- Show selected member name -->
         @if (Model.MemberToShow != null)
         {
             <p class="member-name">
@@ -20,6 +25,7 @@
             </p>
         }
 
+        <!-- Instructions -->
         <p class="text-center">
             This is the permanent meal sign-up. Please enter your regular meal schedule here.
             At the end of each week, your meal plan will automatically reset to this schedule.
@@ -30,11 +36,13 @@
         </p>
     </div>
 
+    <!-- Meal sign-up tables (only show if a member was selected) -->
     <div>
         @if (Model.MemberToShow != null)
         {
             <input type="hidden" asp-for="MemberID" />
 
+            <!-- Weekday Table (Mon–Fri) -->
             <table>
                 <thead>
                     <tr>
@@ -74,6 +82,7 @@
 
             <p></p>
 
+            <!-- Weekend Table (Sat–Sun) -->
             <table>
                 <thead>
                     <tr>
@@ -98,6 +107,7 @@
                 </tbody>
             </table>
 
+            <!-- Meal Status Info -->
             @if (Model.MemberToShow != null)
             {
                 <div class="text-center">
@@ -110,6 +120,7 @@
                 </div>
             }
 
+            <!-- Save Button -->
             <div class="text-center admin-action">
                 <input type="submit" value="Save" asp-page-handler="EditSignUp" class="btn-save" />
             </div>

@@ -1,7 +1,8 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "View Meals";
+    ViewData["Title"] = "Menu";
+    ViewData["ActivePage"] = "Menu";
 }
 
 <head>
@@ -9,10 +10,8 @@
 </head>
 
 <h1 class="title">Weekly Meals</h1>
-<!-- Main Menu Table (Mon–Fri) -->
- <!-- Weekend Lunch Table (Sat–Sun) -->
+<!-- Main Weekday Menu Table (Mon–Fri) -->
 <div class="text-center">
-    <!-- Main Menu Table (Mon–Fri) -->
     <table class="WeekdayTable">
         <thead>
             <tr>
@@ -24,6 +23,7 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Lunch Row -->
             <tr>
                 @foreach (string s in Model.LunchMenu.Take(5))
                 {
@@ -31,6 +31,7 @@
                 }
             </tr>
 
+            <!-- Dinner Row -->
             <tr>
                 @foreach (string s in Model.DinnerMenu)
                 {

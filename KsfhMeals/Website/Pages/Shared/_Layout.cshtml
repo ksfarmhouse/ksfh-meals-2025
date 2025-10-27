@@ -1,71 +1,86 @@
-﻿<!DOCTYPE html>
+﻿@* _Layout.cshtml — main layout for FH Meals *@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - Website</title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/style.css"/>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Website</title>
 
-        <!-- icon for browser tabs -->
-        <link rel="icon" type="image/png" href="~/images/FHBasicCrest.png" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
 
-        <!-- icon for iOS bookmark -->
-        <link rel="apple-touch-icon" sizes="180x180" href="~/images/FHBasicCrest.png">
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">FH Meals</a>
-                <button class="navbar-toggler" type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#mainNavbarCollapse"
-                        aria-controls="mainNavbarCollapse"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse" id="mainNavbarCollapse">
-                    <ul class="navbar-nav">
-                        <li>
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Menu" ? "active" : "")" asp-area="" asp-page="/Index">Menu</a>
-                        </li>
-                        <li>
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Sign Up/ View Meals" ? "active" : "")" asp-area="" asp-page="/TempSignUp">Sign Up/View Meals</a>
-                        </li>
-                        <li>
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Permanent Sign Up" ? "active" : "")" asp-area="" asp-page="/PermaSignUp">Permanent Sign Up</a>
-                        </li>
-                        <li>
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Late/Early Plates" ? "active" : "")" asp-area="" asp-page="/EarlyLatePlates">Early/Late Plates</a>
-                        </li>
-                        <!--
-                        <li>
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Crew" ? "active" : "")" asp-area="" asp-page="/Crew">Crew</a>
-                        </li>
-                        -->
-                        <li>
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Treasurer" ? "active" : "")" asp-area="" asp-page="/Treasurer">Treasurer</a>
-                        </li>
-                        <li>
-                            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Admin" ? "active" : "")" asp-area="" asp-page="/Authorize">Admin</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!-- JS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="~/images/FHBasicCrest.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/images/FHBasicCrest.png" />
+</head>
 
-        <footer class="border-top footer text-muted">
-            &copy; 2025 - FH Meal Website - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </footer>
+<body>
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">FH Meals</a>
 
-        @await RenderSectionAsync("Scripts", required: false)
-    </body>
+            <!-- Mobile menu button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbarCollapse" aria-controls="mainNavbarCollapse"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible menu -->
+            <div class="navbar-collapse collapse" id="mainNavbarCollapse">
+                <ul class="navbar-nav">
+                    <!-- Each link highlights if it matches ActivePage -->
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Menu" ? "active" : "")"
+                           asp-area="" asp-page="/Index">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Weekly Sign Up" ? "active" : "")"
+                           asp-area="" asp-page="/TempSignUp">Weekly Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Permanent Sign Up" ? "active" : "")"
+                           asp-area="" asp-page="/PermaSignUp">Permanent Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Early/Late Plates" ? "active" : "")"
+                           asp-area="" asp-page="/EarlyLatePlates">Early/Late Plates</a>
+                    </li>
+                    @* <li class="nav-item">
+                        <a class="nav-link" asp-page="/Crew">Crew</a>
+                    </li> *@
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Treasurer" ? "active" : "")"
+                           asp-area="" asp-page="/Treasurer">Treasurer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Admin" ? "active" : "")"
+                           asp-area="" asp-page="/Authorize">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main page content (replaced by each Razor page) -->
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-top footer text-muted">
+        &copy; 2025 - FH Meal Website -
+        <a asp-area="" asp-page="/Privacy">Privacy</a>
+    </footer>
+
+    <!-- Optional per-page scripts -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
 </html>

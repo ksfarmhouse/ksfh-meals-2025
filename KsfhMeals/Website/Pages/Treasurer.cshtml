@@ -1,7 +1,8 @@
 ﻿@page
-@model Website.Pages.TreasurerModel
+@model TreasurerModel
 @{
     ViewData["Title"] = "Treasurer";
+    ViewData["ActivePage"] = "Treasurer";
 }
 
 <head>
@@ -13,6 +14,7 @@
     <h1 class="title">Treasurer Overview</h1>
 </div>
 
+<!-- Treasurer Table -->
 <div class="treasurer-table-container">
     <table class="TreasurerTable">
         <thead>
@@ -27,6 +29,7 @@
         <tbody>
 		@foreach (Data.Member m in Model.AllMembers)
 		{
+                <!-- Only display members with meals and out-of-house status -->
 			@if(m.LunchCount > 0 || m.DinnerCount > 0 && (m.HouseStatus == Data.Status.OutOfHouse))
 			{
 				<tr>
