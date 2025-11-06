@@ -57,21 +57,35 @@
         },
         "compile": {
           "lib/net8.0/System.Data.SqlClient.dll": {
-            "related": ".xml"
+            "related": ".xml;.xml"
+          },
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml;.xml"
           }
         },
         "runtime": {
           "lib/net8.0/System.Data.SqlClient.dll": {
-            "related": ".xml"
+            "related": ".xml;.xml"
+          },
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml;.xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
+          "buildTransitive/net8.0/_._": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll": {
             "assetType": "runtime",
             "rid": "unix"
+          },
+          "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "win"
           },
           "runtimes/win/lib/net8.0/System.Data.SqlClient.dll": {
             "assetType": "runtime",
@@ -222,9 +236,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj",
+      "projectPath": "C:\\Users\\hunte\\source\\repos\\ksfh-meals-2025\\KsfhMeals\\Data\\Data.csproj",
       "packagesPath": "C:\\Users\\hunte\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\hunte\\Source\\Repos\\ksfh-meals-2025\\KsfhMeals\\Data\\obj\\",
       "projectStyle": "PackageReference",
