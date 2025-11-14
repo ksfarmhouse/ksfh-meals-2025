@@ -23,8 +23,8 @@ namespace Data
                 string Ljson = File.ReadAllText("lunch.json");
                 string Djson = File.ReadAllText("dinner.json");
 
-                _lunch = JsonConvert.DeserializeObject<List<string>>(Ljson);
-                _dinner = JsonConvert.DeserializeObject<List<string>>(Djson);
+                _lunch = JsonConvert.DeserializeObject<List<string>>(Ljson)!;
+                _dinner = JsonConvert.DeserializeObject<List<string>>(Djson)!;
             }
             else
             {
@@ -37,7 +37,7 @@ namespace Data
                 string membersJson = File.ReadAllText("members.json");
                 
 
-                _members = JsonConvert.DeserializeObject<List<Member>>(membersJson);
+                _members = JsonConvert.DeserializeObject<List<Member>>(membersJson)!;
             }
             else
             {

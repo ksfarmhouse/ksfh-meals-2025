@@ -5,18 +5,78 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Website.Pages
 {
+    /// <summary>
+    /// PageModel for editing and managing house members.
+    /// Allows adding new members, editing existing members' statuses, and removing members.
+    /// </summary>
     public class EditMembersModel : PageModel
     {
+        #region Properties
+
+        /// <summary>
+        /// Dropdown items for house statuses in fixed order.
+        /// </summary>
         public List<SelectListItem> Items { get; set; } = new List<SelectListItem>
-            {
+        {
                 new SelectListItem { Value = "1", Text = "In House" },
                 new SelectListItem { Value = "2", Text = "Out Of House" },
                 new SelectListItem { Value = "3", Text = "New Member" },
                 new SelectListItem { Value = "4", Text = "Alumni" }
-            };
+        };
 
-        public List<SelectListItem> Statuses { get; set; }
+        /// <summary>
+        /// Dropdown for dynamically changing status based on current member.
+        /// </summary>
+        public List<SelectListItem>? Statuses { get; set; }
 
+        /// <summary>
+        /// Bound property for the first name when adding a new member.
+        /// </summary>
+        [BindProperty] public string? First { get; set; }
+
+        /// <summary>
+        /// Bound property for the last name when adding a new member.
+        /// </summary>
+        [BindProperty] public string? Last { get; set; }
+
+        /// <summary>
+        /// Bound property for the ID when adding a new member.
+        /// </summary>
+        [BindProperty] public string? ID { get; set; }
+
+        /// <summary>
+        /// Bound property for the selected status when adding a new member.
+        /// </summary>
+        [BindProperty] public string? SelectedStatus { get; set; }
+
+        /// <summary>
+        /// Bound property for the selected status when editing an existing member.
+        /// </summary>
+        [BindProperty] public string? SelectedEditStatus { get; set; }
+
+        /// <summary>
+        /// Unique names for each member's combo box in the table.
+        /// </summary>
+        public List<string> ComboBoxNames { get; set; } = new List<string>();
+
+        /// <summary>
+        /// Index used to track combo box names when rendering table rows.
+        /// </summary>
+        public int Index { get; set; }
+
+        /// <summary>
+        /// Returns all members in the house.
+        /// </summary>
+        public IEnumerable<Member> AllMembers => House.AllMembers;
+
+        #endregion
+
+        #region GET and POST Handlers
+
+        /// <summary>
+        /// Handles GET requests for the Edit Members page.
+        /// Initializes combo box names for all members.
+        /// </summary>
         public void OnGet()
         {
             // strange issues requiring reposting items for combo box, look into it later
@@ -34,25 +94,10 @@ namespace Website.Pages
             }
         }
 
-        [BindProperty]
-        public string? First { get; set; }
-
-        [BindProperty]
-        public string? Last { get; set; }
-
-        [BindProperty]
-        public string? ID { get; set; }
-
-        [BindProperty]
-        public string? SelectedStatus { get; set; }
-
-        [BindProperty]
-        public string? SelectedEditStatus { get; set; }
-
-        public List<string> ComboBoxNames { get; set; } = new List<string>();
-
-        public int Index { get; set; }
-
+        /// <summary>
+        /// Adds a new member to the house.
+        /// </summary>
+        /// <returns>Returns the same page with updated members.</returns>
         public IActionResult OnPostNew()
         {
             Status status = new Status();
@@ -60,7 +105,7 @@ namespace Website.Pages
             if (SelectedStatus == "2") status = Status.OutOfHouse;
             if (SelectedStatus == "3") status = Status.NewMember;
             if (SelectedStatus == "4") status = Status.Alumni;
-            Member newMember = new Member(ID, First, Last, status);
+            Member newMember = new Member(ID!, First!, Last!, status);
             House.AddMember(newMember);
 
             Items = new List<SelectListItem>
@@ -81,31 +126,29 @@ namespace Website.Pages
             return Page();
         }
 
+        /// <summary>
+        /// Edits existing members' statuses based on the selected values in the dropdowns.
+        /// Resets meal signups for all members.
+        /// </summary>
+        /// <returns>Returns the same page with updated members.</returns>
         public IActionResult OnPostEdit()
         {
             foreach (Member m in House.AllMembers)
             {
-                string value = Request.Form["Member" + m.ID];
-                if (value == "1")
+                string value = Request.Form["Member" + m.ID]!;
+
+                m.HouseStatus = value switch
                 {
-                    m.HouseStatus = Status.InHouse;
-                    m.DefaultSignUp = new MealStatus[] { MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, };
-                }
-                else if (value == "2")
-                {
-                    m.HouseStatus = Status.OutOfHouse;
-                    m.DefaultSignUp = new MealStatus[] { MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out };
-                }
-                else if (value == "3")
-                {
-                    m.HouseStatus = Status.NewMember;
-                    m.DefaultSignUp = new MealStatus[] { MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, MealStatus.In, };
-                }
-                else
-                {
-                    m.HouseStatus = Status.Alumni;
-                    m.DefaultSignUp = new MealStatus[] { MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out, MealStatus.Out };
-                }
+                    "1" => Status.InHouse,
+                    "2" => Status.OutOfHouse,
+                    "3" => Status.NewMember,
+                    _ => Status.Alumni
+                };
+
+                // Reset meal signups
+                m.MealSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
+                m.DefaultSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
+
                 ComboBoxNames.Add("Member" + m.ID);
             }
 
@@ -113,8 +156,37 @@ namespace Website.Pages
             return Page();
         }
 
-        public IEnumerable<Member> AllMembers => House.AllMembers;
+        /// <summary>
+        /// Removes a member from the house.
+        /// </summary>
+        /// <param name="RemoveMember">The ID of the member to remove.</param>
+        /// <returns>Returns the same page with updated members.</returns>
+        public IActionResult OnPostRemove(string RemoveMember)
+        {
+            House.RemoveMember(RemoveMember);
+            Items = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "In House" },
+                new SelectListItem { Value = "2", Text = "Out Of House" },
+                new SelectListItem { Value = "3", Text = "New Member" },
+                new SelectListItem { Value = "4", Text = "Alumni" }
+            };
+            Index = 0;
+            foreach (Member m in House.AllMembers)
+            {
+                ComboBoxNames.Add("Member" + m.ID);
+            }
+            return Page();
+        }
 
+        #endregion
+
+        #region Helper Methods
+        /// <summary>
+        /// Returns a list of statuses in the fixed order, reordered so the current status appears first.
+        /// </summary>
+        /// <param name="status">The current status of the member.</param>
+        /// <returns>List of SelectListItems for the dropdown.</returns>
         public List<SelectListItem> GetOtherStatus(Status status)
         {
             if (status == Status.InHouse)
@@ -163,26 +235,8 @@ namespace Website.Pages
                 };
                 return Statuses;
             }
-
         }
 
-        public IActionResult OnPostRemove(string RemoveMember)
-        {
-            House.RemoveMember(RemoveMember);
-            Items = new List<SelectListItem>
-            {
-                new SelectListItem { Value = "1", Text = "In House" },
-                new SelectListItem { Value = "2", Text = "Out Of House" },
-                new SelectListItem { Value = "3", Text = "New Member" },
-                new SelectListItem { Value = "4", Text = "Alumni" }
-            };
-            Index = 0;
-            foreach (Member m in House.AllMembers)
-            {
-                ComboBoxNames.Add("Member" + m.ID);
-            }
-            return Page();
-        }
-
+        #endregion
     }
 }

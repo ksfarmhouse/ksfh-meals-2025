@@ -6,40 +6,41 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Website.Pages
 {
     /// <summary>
-    /// NOTE: This page is currently not being used.
-    /// PageModel for managing permanent meal sign-ups.
-    /// Allows members to set their default weekly meal schedule.
+    /// PageModel for weekly meal sign-ups.
+    /// Allows a member to enter their ID, view their default meal plan,
+    /// and adjust their meal attendance for the week.
     /// </summary>
-    public class PermaSignUpModel : PageModel
+    public class MealSignUpsModel : PageModel
     {
         #region Properties
 
         /// <summary>
-        /// Bound property for member ID input.
+        /// Bound property for the ID entered by the user.
         /// </summary>
         [BindProperty]
         public string? ID { get; set; }
 
         /// <summary>
-        /// The member currently being edited/viewed.
+        /// The member being displayed for sign-up edits.
         /// </summary>
         public Member? MemberToShow { get; set; }
 
         /// <summary>
-        /// Hidden property for member ID in forms.
+        /// Hidden property to hold member ID for form submission.
         /// </summary>
         [HiddenInput]
         public string? MemberID { get; set; }
 
         /// <summary>
-        /// Stores confirmation message after saving sign-up.
+        /// Confirmation message displayed after saving sign-ups.
         /// </summary>
         public string? SaveConfirmationMessage { get; set; }
 
         /// <summary>
-        /// Names of combo boxes for each meal slot.
+        /// Names of the dropdowns used in the meal sign-up form.
+        /// Matches indices of Member.MealSignUp array.
         /// </summary>
-        public string[] comboBoxNames { get; set; } = new string[]
+        public string[] comboBoxNames = new string[]
         {
             "ML", "MD",  // Monday
             "TL", "TD",  // Tuesday
@@ -51,17 +52,18 @@ namespace Website.Pages
         };
 
         /// <summary>
-        /// Bound property for selected meal type (if needed for future).
+        /// Bound property for selected meal type (optional for future use).
         /// </summary>
         [BindProperty]
         public string? SelectedMealType { get; set; }
 
         #endregion
 
-        #region Handlers
+        #region POST Handlers
 
         /// <summary>
-        /// Handles POST when member ID is entered to display their current schedule.
+        /// Handles POST requests when a member enters their ID.
+        /// Sets the member to display and stores the ID for hidden input.
         /// </summary>
         public void OnPost()
         {
@@ -70,10 +72,10 @@ namespace Website.Pages
         }
 
         /// <summary>
-        /// Handles POST for saving the permanent meal sign-up.
-        /// Updates both DefaultSignUp and MealSignUp arrays for the member.
+        /// Handles POST requests to save a member's meal sign-up changes.
+        /// Updates the MealSignUp array based on form input and saves the house data.
         /// </summary>
-        /// <returns>Page with updated confirmation message.</returns>
+        /// <returns>The page with confirmation message.</returns>
         public IActionResult OnPostEditSignUp()
         {
             MemberToShow = GetMember(ID!);
@@ -81,17 +83,16 @@ namespace Website.Pages
             for (int i = 0; i < comboBoxNames.Length; i++)
             {
                 string value = Request.Form[comboBoxNames[i]]!;
-                MemberToShow.DefaultSignUp[i] = value switch
+
+                MemberToShow.MealSignUp[i] = value switch
                 {
                     "1" => MealStatus.In,
                     "2" => MealStatus.Out,
                     "3" => MealStatus.Early,
                     "4" => MealStatus.Late,
                     "5" => MealStatus.Tardy,
-                    _ => MemberToShow.DefaultSignUp[i] // fallback
+                    _ => MemberToShow.MealSignUp[i] // fallback to existing value
                 };
-
-                MemberToShow.MealSignUp[i] = MemberToShow.DefaultSignUp[i];
             }
 
             House.Save();
@@ -101,21 +102,29 @@ namespace Website.Pages
 
         #endregion
 
-        #region Helpers
+        #region Helper Methods
 
         /// <summary>
-        /// Finds a member by ID.
+        /// Retrieves a member from the house by ID.
         /// </summary>
         /// <param name="id">Member ID to search for.</param>
-        /// <returns>The matching Member or null if not found.</returns>
+        /// <returns>The Member object if found, otherwise null.</returns>
         public Member GetMember(string id)
         {
-            return House.AllMembers.FirstOrDefault(m => m.ID == id)!;
+            foreach (Member m in House.AllMembers)
+            {
+                if (m.ID == id)
+                    return m;
+            }
+            return null!;
         }
 
         /// <summary>
-        /// Returns a list of lunch items with the current status selected.
+        /// Returns a list of SelectListItem for lunch dropdowns, with the current status selected.
+        /// Includes "Tardy" option.
         /// </summary>
+        /// <param name="currentStatus">Current MealStatus of the member.</param>
+        /// <returns>List of SelectListItem for lunch.</returns>
         public List<SelectListItem> GetLunchItems(MealStatus currentStatus)
         {
             return new List<SelectListItem>
@@ -129,8 +138,11 @@ namespace Website.Pages
         }
 
         /// <summary>
-        /// Returns a list of dinner items with the current status selected (no Tardy for dinner).
+        /// Returns a list of SelectListItem for dinner dropdowns, with the current status selected.
+        /// No "Tardy" option for dinner.
         /// </summary>
+        /// <param name="currentStatus">Current MealStatus of the member.</param>
+        /// <returns>List of SelectListItem for dinner.</returns>
         public List<SelectListItem> GetDinnerItems(MealStatus currentStatus)
         {
             return new List<SelectListItem>

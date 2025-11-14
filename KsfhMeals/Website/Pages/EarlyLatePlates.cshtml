@@ -31,11 +31,14 @@
 @if (Model.ButtonHit == 1)
 {
     <div class="plates-grid">
+
         <!-- Early Lunch -->
         <div class="plate-card">
             <h4>Early Lunch Plates (@Model.SelectedMembersEarlyLunch.Count)</h4>
-            <p>Set for @Model.LunchCookCount Members</p>
-            <p>@Model.LunchTableCount Tables</p>
+            <p> Set for @Model.LunchCookCount Members<br/>
+                @Model.LunchTableCount Tables<br/>
+                @Model.LunchTardyCount Tardy Members
+            </p>
             @if (Model.SelectedMembersEarlyLunch.Count > 0)
             {
                 <ul>
@@ -74,8 +77,11 @@
             <!-- Early Dinner -->
             <div class="plate-card">
                 <h4>Early Dinner Plates (@Model.SelectedMembersEarlyDinner.Count)</h4>
-                <p>Set for @Model.DinnerCookCount Members</p>
-                <p>@Model.DinnerTableCount Tables</p>
+
+                <p>
+                    Set for @Model.LunchCookCount Members<br />
+                    @Model.LunchTableCount Tables
+                </p>
                 @if (Model.SelectedMembersEarlyDinner.Count > 0)
                 {
                     <ul>

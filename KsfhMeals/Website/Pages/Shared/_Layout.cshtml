@@ -36,30 +36,41 @@
             <!-- Collapsible menu -->
             <div class="navbar-collapse collapse" id="mainNavbarCollapse">
                 <ul class="navbar-nav">
-                    <!-- Each link highlights if it matches ActivePage -->
+                    <!-- Menu -->
                     <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Menu" ? "active" : "")"
                            asp-area="" asp-page="/Index">Menu</a>
                     </li>
+                    <!-- Meal Sign Up -->
                     <li class="nav-item">
-                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Weekly Sign Up" ? "active" : "")"
-                           asp-area="" asp-page="/TempSignUp">Weekly Sign Up</a>
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Meal Sign Up" ? "active" : "")"
+                           asp-area="" asp-page="/MealSignUp">Meal Sign Up</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- Permanent Meal Sign Up -->
+                    @* <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Permanent Sign Up" ? "active" : "")"
                            asp-area="" asp-page="/PermaSignUp">Permanent Sign Up</a>
-                    </li>
+                    </li> *@
+                    <!-- Early and Late Plates -->
                     <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Early/Late Plates" ? "active" : "")"
                            asp-area="" asp-page="/EarlyLatePlates">Early/Late Plates</a>
                     </li>
+                    <!-- Get ID -->
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Get ID" ? "active" : "")"
+                           asp-area="" asp-page="/GetID">Get ID</a>
+                    </li>
+                    <!-- Crew -->
                     @* <li class="nav-item">
                         <a class="nav-link" asp-page="/Crew">Crew</a>
                     </li> *@
+                    <!-- Treasurer -->
                     <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Treasurer" ? "active" : "")"
                            asp-area="" asp-page="/Treasurer">Treasurer</a>
                     </li>
+                    <!-- Authorize (which leads to Admin after password entered) -->
                     <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Admin" ? "active" : "")"
                            asp-area="" asp-page="/Authorize">Admin</a>

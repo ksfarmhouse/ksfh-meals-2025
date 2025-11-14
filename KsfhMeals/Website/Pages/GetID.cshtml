@@ -1,0 +1,27 @@
+﻿@page
+@model Website.Pages.GetIDModel
+@{
+	ViewData["Title"] = "Get ID";
+	ViewData["ActivePage"] = "Get ID";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<form method="post">
+    <label for="name">Enter Full Name:</label>
+    <input type="text" id="name" name="FullNameInput" required />
+
+    <button type="submit">Submit</button>
+</form>
+<p/>
+@if (Model.FoundMember != null)
+{
+    <p><strong>@Model.FoundMember.FullName<br/>
+        ID: @Model.FoundMember.ID</strong></p>
+}
+else if (Model.LookupResult != null)
+{
+    <p>@Model.LookupResult</p>
+}

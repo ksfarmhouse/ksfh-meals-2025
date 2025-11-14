@@ -4,40 +4,86 @@ using Data;
 
 namespace Website.Pages
 {
+    /// <summary>
+    /// PageModel for displaying Early and Late Plates for each day of the week.
+    /// Populates lists of members for early/late lunch and dinner and calculates table and cook counts.
+    /// </summary>
     public class EarlyLatePlatesModel : PageModel
     {
-        public IEnumerable<Member> AllMembers => House.AllMembers;
-
-        public List<Member> SelectedMembersLateLunch { get; set; } = new List<Member>();
-
-        public List<Member> SelectedMembersLateDinner { get; set; } = new List<Member>();
-
-        public List<Member> SelectedMembersEarlyLunch { get; set; } = new List<Member>();
-
-        public List<Member> SelectedMembersEarlyDinner { get; set; } = new List<Member>();
-
-        public double LunchCookCount { get; set; } = -2; //take out crew
-
-        public int LunchTableCount { get; set; } = 0;
-
-        public double DinnerCookCount { get; set; } = -4; //take out crew add Mom T
-
-        public int DinnerTableCount { get; set; } = 0;
-
-        public int ButtonHit { get; set; } = 0;
-
-        public string ?SelectedDay { get; set; }
-
-        public void OnGet(string DaySelect)
-        {
-            ViewData["ActivePage"] = "Late/Early Plates";
-        }
+        #region Properties
 
         /// <summary>
-        /// When button is clicked, 4 boxes displaying the days early and late lunch and dinner plates and how many people will be at the meal
+        /// All members in the house.
         /// </summary>
-        /// <param name="DaySelect">The day selected</param>
-        /// <returns>the same page with the 4 new boxes</returns>
+        public IEnumerable<Member> AllMembers => House.AllMembers;
+
+        /// <summary>
+        /// Members selected for late lunch on the chosen day.
+        /// </summary>
+        public List<Member> SelectedMembersLateLunch { get; set; } = new List<Member>();
+
+        /// <summary>
+        /// Members selected for late dinner on the chosen day.
+        /// </summary>
+        public List<Member> SelectedMembersLateDinner { get; set; } = new List<Member>();
+
+        /// <summary>
+        /// Members selected for early lunch on the chosen day.
+        /// </summary>
+        public List<Member> SelectedMembersEarlyLunch { get; set; } = new List<Member>();
+
+        /// <summary>
+        /// Members selected for early dinner on the chosen day.
+        /// </summary>
+        public List<Member> SelectedMembersEarlyDinner { get; set; } = new List<Member>();
+
+        /// <summary>
+        /// Number of members who will cook for lunch.
+        /// Starts negative to remove crew automatically.
+        /// </summary>
+        public double LunchCookCount { get; set; } = -2;
+
+        /// <summary>
+        /// Number of tables needed for lunch.
+        /// </summary>
+        public int LunchTableCount { get; set; } = 0;
+
+        /// <summary>
+        /// Number of members who will cook for dinner.
+        /// Starts negative to adjust crew and Mom T automatically.
+        /// </summary>
+        public double DinnerCookCount { get; set; } = -4;
+
+        /// <summary>
+        /// Number of tables needed for dinner.
+        /// </summary>
+        public int DinnerTableCount { get; set; } = 0;
+
+        /// <summary>
+        /// Number of members who are tardy for lunch.
+        /// </summary>
+        public int LunchTardyCount { get; set; } = 0;
+
+        /// <summary>
+        /// Tracks whether a day button has been clicked.
+        /// </summary>
+        public int ButtonHit { get; set; } = 0;
+
+        /// <summary>
+        /// The day selected by the user (M, T, W, TH, F, SA, SU).
+        /// </summary>
+        public string? SelectedDay { get; set; }
+
+        #endregion
+
+        #region POST Handler
+
+        /// <summary>
+        /// Handles POST requests when a day button is clicked.
+        /// Populates early/late lunch and dinner member lists and calculates cook and table counts.
+        /// </summary>
+        /// <param name="DaySelect">The day selected by the user.</param>
+        /// <returns>The same page with updated member lists and counts.</returns>
         public IActionResult OnPost(string DaySelect)
         {
             SelectedDay = DaySelect;
@@ -45,72 +91,55 @@ namespace Website.Pages
             int lunchIndex = 0;
             int dinnerIndex = 1;
 
-
             switch (DaySelect)
             {
-                //Monday
-                case "M":
-                    lunchIndex = 0; dinnerIndex = 1;
-                    break;
-                //Tuesday
-                case "T":
-                    lunchIndex = 2; dinnerIndex = 3;
-                    break;
-
-                //Wednesday
-                case "W":
-                    lunchIndex = 4; dinnerIndex = 5;
-                    break;
-                //Thursday
-                case "TH":
-                    lunchIndex = 6; dinnerIndex = 7;
-                    break;
-                //Friday
-                case "F":
-                    lunchIndex = 8; dinnerIndex = 9;
-                    break;
-                case "SA":
-                    lunchIndex = 10; dinnerIndex = -1;
-                    break;
-                case "SU":
-                    lunchIndex = 11; dinnerIndex = -1;
-                    break;
-                default:
-                    lunchIndex = 0; dinnerIndex = 1;
-                    break;
+                case "M": lunchIndex = 0; dinnerIndex = 1; break;
+                case "T": lunchIndex = 2; dinnerIndex = 3; break;
+                case "W": lunchIndex = 4; dinnerIndex = 5; break;
+                case "TH": lunchIndex = 6; dinnerIndex = 7; break;
+                case "F": lunchIndex = 8; dinnerIndex = 9; break;
+                case "SA": lunchIndex = 10; dinnerIndex = -1; break; // no dinner on Saturday
+                case "SU": lunchIndex = 11; dinnerIndex = -1; break; // no dinner on Sunday
+                default: lunchIndex = 0; dinnerIndex = 1; break;
             }
 
-            // Loop through all members and populate lists/counts
+            // Populate member lists and cook counts
             foreach (Member m in AllMembers)
             {
                 // Lunch
-                if (m.TempSignUp[lunchIndex] == MealStatus.Late)
-                    SelectedMembersLateLunch.Add(m);
-                else if (m.TempSignUp[lunchIndex] == MealStatus.Early)
-                    SelectedMembersEarlyLunch.Add(m);
-
-                if (m.TempSignUp[lunchIndex] == MealStatus.In)
-                    LunchCookCount++;
-
-                if (dinnerIndex != -1)
+                switch (m.MealSignUp[lunchIndex])
                 {
-                    // Dinner
-                    if (m.TempSignUp[dinnerIndex] == MealStatus.Late)
-                        SelectedMembersLateDinner.Add(m);
-                    else if (m.TempSignUp[dinnerIndex] == MealStatus.Early)
-                        SelectedMembersEarlyDinner.Add(m);
-
-                    if (m.TempSignUp[dinnerIndex] == MealStatus.In)
-                        DinnerCookCount++;
+                    case MealStatus.Late: SelectedMembersLateLunch.Add(m); break;
+                    case MealStatus.Early: SelectedMembersEarlyLunch.Add(m); break;
+                    case MealStatus.In: LunchCookCount++; break;
+                    case MealStatus.Tardy: LunchTardyCount++; break;
                 }
 
+                // Dinner (no Tardy)
+                if (dinnerIndex != -1)
+                {
+                    switch (m.MealSignUp[dinnerIndex])
+                    {
+                        case MealStatus.Late: SelectedMembersLateDinner.Add(m); break;
+                        case MealStatus.Early: SelectedMembersEarlyDinner.Add(m); break;
+                        case MealStatus.In: DinnerCookCount++; break;
+                    }
+                }
             }
 
+            // Ensure counts are not negative
+            LunchCookCount = Math.Max(0, LunchCookCount);
+            DinnerCookCount = Math.Max(0, DinnerCookCount);
+
+            // Calculate number of tables (9 members per table)
             LunchTableCount = (int)Math.Ceiling(LunchCookCount / 9);
             DinnerTableCount = (int)Math.Ceiling(DinnerCookCount / 9);
+
             ButtonHit = 1;
+
             return Page();
         }
+
+        #endregion
     }
 }
-
