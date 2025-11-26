@@ -91,7 +91,7 @@ namespace Website.Pages
                     _ => MemberToShow.DefaultSignUp[i] // fallback
                 };
 
-                MemberToShow.MealSignUp[i] = MemberToShow.DefaultSignUp[i];
+                MemberToShow.TempMealSignUp[i] = MemberToShow.DefaultSignUp[i];
             }
 
             House.Save();

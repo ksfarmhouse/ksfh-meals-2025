@@ -10,9 +10,8 @@
         public Status HouseStatus { get; set; }
         public int DinnerCount { get; set; }
         public int LunchCount { get; set; }
-        public MealStatus[] MealSignUp { get; set; } = new MealStatus[12];
+        public MealStatus[] TempMealSignUp { get; set; } = new MealStatus[12];
         
-        // from old style of setting meal schedule, not used currently
         public MealStatus[] DefaultSignUp { get; set; } = new MealStatus[12];
 
         public Member(string iD, string firstName, string lastName, Status houseStatus)
@@ -20,8 +19,7 @@
             MealStatus[] defaultSignUp;
             if(houseStatus == Status.InHouse || houseStatus == Status.NewMember) 
             {
-                //defaultSignUp = Enumerable.Repeat(MealStatus.In, 12).ToArray();
-                defaultSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
+                defaultSignUp = Enumerable.Repeat(MealStatus.In, 12).ToArray();
             }
             else
             {
@@ -35,7 +33,7 @@
             DinnerCount = 0;
             LunchCount = 0;
 			DefaultSignUp = defaultSignUp;
-            MealSignUp = defaultSignUp;
+            TempMealSignUp = defaultSignUp;
             
         }
     }

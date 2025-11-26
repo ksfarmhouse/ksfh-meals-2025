@@ -146,9 +146,17 @@ namespace Website.Pages
                 };
 
                 // Reset meal signups
-                m.MealSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
-                m.DefaultSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
-
+                if (value == "1" || value == "3")
+                {
+                    m.TempMealSignUp = Enumerable.Repeat(MealStatus.In, 12).ToArray();
+                    m.DefaultSignUp = Enumerable.Repeat(MealStatus.In, 12).ToArray();
+                }
+                else
+                {
+                    m.TempMealSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
+                    m.DefaultSignUp = Enumerable.Repeat(MealStatus.Out, 12).ToArray();
+                }
+                    
                 ComboBoxNames.Add("Member" + m.ID);
             }
 

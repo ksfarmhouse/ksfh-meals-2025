@@ -44,13 +44,13 @@
                     <!-- Meal Sign Up -->
                     <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Meal Sign Up" ? "active" : "")"
-                           asp-area="" asp-page="/MealSignUp">Meal Sign Up</a>
+                           asp-area="" asp-page="/TempMealSignUp">Weekly Meal Sign Up</a>
                     </li>
                     <!-- Permanent Meal Sign Up -->
-                    @* <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Permanent Sign Up" ? "active" : "")"
                            asp-area="" asp-page="/PermaSignUp">Permanent Sign Up</a>
-                    </li> *@
+                    </li> 
                     <!-- Early and Late Plates -->
                     <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Early/Late Plates" ? "active" : "")"

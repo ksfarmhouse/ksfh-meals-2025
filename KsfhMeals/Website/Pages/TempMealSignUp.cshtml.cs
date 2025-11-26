@@ -84,14 +84,14 @@ namespace Website.Pages
             {
                 string value = Request.Form[comboBoxNames[i]]!;
 
-                MemberToShow.MealSignUp[i] = value switch
+                MemberToShow.TempMealSignUp[i] = value switch
                 {
                     "1" => MealStatus.In,
                     "2" => MealStatus.Out,
                     "3" => MealStatus.Early,
                     "4" => MealStatus.Late,
                     "5" => MealStatus.Tardy,
-                    _ => MemberToShow.MealSignUp[i] // fallback to existing value
+                    _ => MemberToShow.TempMealSignUp[i] // fallback to existing value
                 };
             }
 

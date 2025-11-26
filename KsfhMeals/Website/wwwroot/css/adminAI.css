@@ -1,0 +1,105 @@
+﻿/* Gemini Auto-Fill Styles 
+    Matches FarmHouse Fraternity Theme defined in style.css
+*/
+
+.ai-section {
+    background-color: var(--fh-white);
+    border: 2px dashed var(--fh-green); /* Dashed green border to signify "drop zone" or utility */
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.ai-header {
+    font-weight: bold;
+    color: var(--fh-green);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--fh-gold); /* Gold underline */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* File Input Wrapper */
+.file-upload-area {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: var(--fh-light-green);
+    border-radius: 5px;
+}
+
+/* Preview Area */
+.preview-box {
+    display: none; /* Hidden by default */
+    margin-top: 15px;
+    padding: 10px;
+    background: var(--fh-white);
+    border: 1px solid var(--fh-green);
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pdfIcon {
+    font-size: 30px;
+    color: var(--fh-green); /* Green icon */
+}
+
+#previewImg {
+    max-height: 100px;
+    border: 1px solid var(--fh-gold);
+    border-radius: 4px;
+}
+
+#fileName {
+    color: var(--fh-green);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* AI Action Button 
+   Uses FH Gold to distinguish it from the standard "Save" button 
+*/
+.btn-ai {
+    background-color: var(--fh-green);
+    color: var(--fh-white);
+    border: 1px solid var(--fh-green);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: all 0.2s ease;
+}
+
+.btn-ai:hover {
+    background-color: var(--fh-gold);
+    color: var(--fh-green);
+    border-color: var(--fh-gold);
+}
+
+.btn-ai:disabled {
+    background-color: #ccc;
+    color: #666;
+    border-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Status Messages */
+.status-text {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--fh-green);
+}
+
+.status-text.error-msg {
+    color: #a00; /* Dark red for errors, distinct but readable */
+}

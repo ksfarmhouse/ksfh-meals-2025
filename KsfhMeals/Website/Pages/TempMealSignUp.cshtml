@@ -26,9 +26,11 @@
 
         <!-- Instructions -->
         <p class="text-center">
-            This is the meal sign-up showing your current weekly schedule.<br/>
-            If you will miss a meal due to a meeting or other event, mark it here to update your schedule.<br/>
-            <strong>Your schedule will automatically reset to "Out" for all meals every Sunday night.</strong>
+            This is the weekly meal sign-up. If you have a meeting or any event that causes you to miss a meal, mark it here.
+            Your schedule will revert to your default plan at the end of each week.
+        </p>
+        <p class="text-center" style="font-weight: bold;">
+            Edits here will not affect your permanent meal plan.
         </p>
 
     </div>
@@ -57,7 +59,7 @@
                         <th>Lunch</th>
                         @for (int i = 0; i < Model.MemberToShow.DefaultSignUp.Length-2; i += 2)
                         {
-                            var Items = Model.GetLunchItems(Model.MemberToShow.MealSignUp[i]);
+                            var Items = Model.GetLunchItems(Model.MemberToShow.TempMealSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
@@ -67,9 +69,9 @@
                     <!-- Dinner row -->
                     <tr>
                         <th>Dinner</th>
-                        @for (int i = 1; i < Model.MemberToShow.MealSignUp.Length - 2; i += 2)
+                        @for (int i = 1; i < Model.MemberToShow.TempMealSignUp.Length - 2; i += 2)
                         {
-                            var Items = Model.GetDinnerItems(Model.MemberToShow.MealSignUp[i]);
+                            var Items = Model.GetDinnerItems(Model.MemberToShow.TempMealSignUp[i]);
                             <td>
                                 <select asp-items="Items" name="@Model.comboBoxNames[i]"></select>
                             </td>
@@ -92,13 +94,13 @@
                     <tr>
                         <!-- Saturday Lunch -->
                         <td>
-                            <select asp-items="Model.GetLunchItems(Model.MemberToShow!.MealSignUp[10])"
+                            <select asp-items="Model.GetLunchItems(Model.MemberToShow!.TempMealSignUp[10])"
                                     name="@Model.comboBoxNames[10]"></select>
                         </td>
 
                         <!-- Sunday Lunch -->
                         <td>
-                            <select asp-items="Model.GetLunchItems(Model.MemberToShow.MealSignUp[11])"
+                            <select asp-items="Model.GetLunchItems(Model.MemberToShow.TempMealSignUp[11])"
                                     name="@Model.comboBoxNames[11]"></select>
                         </td>
                     </tr>

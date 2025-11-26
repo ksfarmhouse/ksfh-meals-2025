@@ -107,7 +107,7 @@ namespace Website.Pages
             foreach (Member m in AllMembers)
             {
                 // Lunch
-                switch (m.MealSignUp[lunchIndex])
+                switch (m.TempMealSignUp[lunchIndex])
                 {
                     case MealStatus.Late: SelectedMembersLateLunch.Add(m); break;
                     case MealStatus.Early: SelectedMembersEarlyLunch.Add(m); break;
@@ -118,7 +118,7 @@ namespace Website.Pages
                 // Dinner (no Tardy)
                 if (dinnerIndex != -1)
                 {
-                    switch (m.MealSignUp[dinnerIndex])
+                    switch (m.TempMealSignUp[dinnerIndex])
                     {
                         case MealStatus.Late: SelectedMembersLateDinner.Add(m); break;
                         case MealStatus.Early: SelectedMembersEarlyDinner.Add(m); break;
