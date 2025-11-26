@@ -1,13 +1,28 @@
 # ksfh-meals-2025
 
-This is the code behind the K-State FarmHouse meal website.
+This is the code behind the K-State FarmHouse meal website. It manages member sign-ups and the weekly food schedule.
 
-For Formatting, HTML and CSS are used.
-For backend functions, C# is used.
+## How it works
+* **Frontend:** HTML and CSS are used for the look and feel.
+* **Backend:** C# (ASP.NET Core) handles the logic and data saving.
+* **AI Feature:** We use Google Gemini to read PDF menus so you don't have to type them out manually.
 
-The main areas you would work in is the Website project:
-The wwwroot folder contains that css styling.
-The Pages folder conains every page that is used in the website.
+## Where to find things
+The main work happens in the **Website** project folder:
 
-In the Shared Folder, there is a file called _Layout. This is the navigation bar that allows you to switch between pages.
-The rest of the files in the Pages folder are for what is actually in each page.
+* **`wwwroot/`**: 
+    * Go here to change colors, fonts, or table sizes (`style.css`).
+    * Go here if the AI button looks wrong (`admin-ai.css`).
+* **`Pages/`**: 
+    * Contains every visible page on the site.
+    * **`Admin.cshtml`**: This is where the menu editing logic lives.
+    * **`Shared/_Layout.cshtml`**: This is the Navigation Bar. Edit this if you want to add a new link to the top menu.
+
+## Updating the AI
+If the auto-fill feature stops working, you probably need a new API Key.
+1.  Go to Google AI Studio and generate a new key.
+2.  Open `Pages/Admin.cshtml.cs`.
+3.  Paste the new key into the `OnPostAskGeminiAsync` function.
+
+## How to Run
+Open the `.sln` file in Visual Studio and click the Green Play Button (IIS Express).
