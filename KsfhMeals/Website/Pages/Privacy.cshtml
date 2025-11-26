@@ -3,6 +3,50 @@
 @{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<head>
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<div class="text-center">
+    <h1 class="title">Privacy Policy</h1>
+</div>
+
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <p>
+        At the FarmHouse Fraternity (Chapter Website), we value the privacy of our members.
+        This document outlines the types of personal information we receive and collect when you use this website,
+        as well as how we safeguard your information.
+    </p>
+
+    <h3 style="color: var(--fh-green); margin-top: 30px;">1. Information We Collect</h3>
+    <p>We collect information to provide better services to our members, specifically regarding meal management and house operations:</p>
+    <ul>
+        <li><strong>Member Data:</strong> Names, membership status (In-House, Out-of-House, New Member), and dietary preferences.</li>
+        <li><strong>Meal Activity:</strong> Records of meal sign-ups, cancellations, and attendance counts (Lunch/Dinner).</li>
+        <li><strong>Uploaded Content:</strong> Weekly menu files (PDFs or Images) uploaded by Administrators for processing.</li>
+    </ul>
+
+    <h3 style="color: var(--fh-green); margin-top: 30px;">2. How We Use Information</h3>
+    <ul>
+        <li>To manage the weekly kitchen schedule and food quantities.</li>
+        <li>To generate billing reports for the Treasurer based on meal attendance.</li>
+        <li>To display the weekly menu to members.</li>
+    </ul>
+
+    <h3 style="color: var(--fh-green); margin-top: 30px;">3. Data Security</h3>
+    <p>
+        We implement appropriate security measures to protect against unauthorized access to or unauthorized alteration, disclosure, or destruction of data.
+        Access to the Admin Dashboard and Member editing features is restricted to authorized officers.
+    </p>
+
+    <h3 style="color: var(--fh-green); margin-top: 30px;">4. Changes to this Policy</h3>
+    <p>
+        We may update this Privacy Policy from time to time. We will notify members of any significant changes by posting the new policy on this page.
+    </p>
+
+    <hr style="margin-top: 40px; border-color: var(--fh-gold);">
+    <p style="font-size: 0.9em; color: #666; font-style: italic;">
+        Last Updated: @DateTime.Now.ToString("MMMM dd, yyyy")
+    </p>
+</div>
