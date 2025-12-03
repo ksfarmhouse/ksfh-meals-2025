@@ -72,6 +72,36 @@ namespace Website.Pages
         #region Standard POST Handlers
 
         /// <summary>
+        /// Gets the meal schedule that is currently being used
+        /// </summary>
+        public void OnGet()
+        {
+            var lunches = House.Lunch.ToList();
+            var dinners = House.Dinner.ToList();
+
+            if (lunches != null && lunches.Count >= 7)
+            {
+                ML = lunches[0];
+                TL = lunches[1];
+                WL = lunches[2];
+                THL = lunches[3];
+                FL = lunches[4];
+                SA = lunches[5];
+                SU = lunches[6];
+            }
+
+            if (dinners != null && dinners.Count >= 5)
+            {
+                MD = dinners[0];
+                TD = dinners[1];
+                WD = dinners[2];
+                THD = dinners[3];
+                FD = dinners[4];
+            }
+        }
+
+
+        /// <summary>
         /// Saves the weekly menu to the data store.
         /// </summary>
         public void OnPost()
@@ -171,36 +201,40 @@ namespace Website.Pages
                 }
 
                 // 2. Define System Prompt (Business Rules)
-                // Enforces 20-char limit and weekend/Friday overrides.
+                // Enforces 23-char limit and weekend/Friday overrides.
                 string systemInstruction = @"
                     Extract menu data into JSON: [{ ""day"": ""Monday"", ""lunch"": ""..."", ""dinner"": ""..."" }].
-    
-                    STRICT CONSTRAINT: Max 20 characters per dish.
-    
+
+                    STRICT CONSTRAINT: Max 23 characters per dish.
+
                     RULES:
                     1. REMOVE sides (salad, bread, rice, veggies), drinks, and desserts.
-                    2. EXCEPTION: You may keep 'Potatoes' if it fits within 20 chars (e.g., 'Steak & Potatoes').
+                    2. EXCEPTION: You may keep 'Potatoes' if it fits within 23 chars.
                     3. REMOVE adjectives (e.g., 'Spicy', 'Fresh', 'Creamy') unless part of the dish name (e.g., 'Huli Huli').
-                    4. ABBREVIATIONS: 'and'->'&', 'with'->'w/', 'Chicken'->'Ckn' (if needed).
-    
-                    EXAMPLES:
-                    - 'Turkey with spinach artichoke melts' -> 'Turkey Melt'
-                    - 'Loose meat Philly' -> 'Philly Cheesesteaks'
-                    - 'Huli Huli with white rice' -> 'Huli Huli Chicken'
-                    - 'Steak in garlic butter diced red potatoes' -> 'Steak & Potatoes'
-    
+                    4. LENGTH LOGIC:
+                       - First, swap 'and'->'&', 'with'->'w/' (lowercase).
+                       - Check length. If > 23 chars, abbreviate ONE protein (Chicken->Ckn, Beef->Bf) at a time until it fits.
+                       - STOP abbreviating as soon as it fits the 23-char limit.
+                    5. CAPITALIZATION: Capitalize the First Letter of Every Word (Title Case). EXCEPTION: Keep 'w/' lowercase.
+                    6. ACRONYMS: Keep common acronyms (e.g., BBQ, BLT) in ALL CAPS.
+                    7. SPECIAL MAPPINGS:
+                       - 'Assorted' -> Keep 'Assorted' (e.g., 'Assorted Sandwiches').
+                       - 'Chef's Choice' -> Keep as 'Chef's Choice'.
+                       - SPECIAL EVENTS: If an event (e.g., 'Friendsgiving') is listed with a meal, format as 'Event: Meal' (e.g., 'Friendsgiving: Turkey'). Prioritize fitting both; if too long, remove the event name.
+
                     OVERRIDES:
                     - Friday Dinner: 'Leftovers'
-                    - Saturday Lunch: 'Burgers', Dinner: null
-                    - Sunday Lunch: Map any meal to Lunch, Dinner: null
-    
+                    - Saturday Lunch: 'Burgers', Dinner: 'N/A'
+                    - Sunday Lunch: Map any meal to Lunch, Dinner: 'N/A'
+                    - HOLIDAY LOGIC: If a holiday break is detected (e.g., Thanksgiving), set Saturday & Sunday meals to the holiday name (e.g., 'Thanksgiving Break') instead of the standard 'Burgers'/'N/A'.
+
                     Return ONLY raw JSON.
                 ";
 
                 string finalPrompt = $"{systemInstruction}\n\nUser Note: {userPrompt}";
 
                 // 3. Configure API
-                string apiKey = "AIzaSyDP0lD44rPajz-4HVROTYPPYIzq8u01EnE"; // <--- Insert API Key
+                string apiKey = "AIzaSyB5SzhQCpkxWZuRyo31yER7USEYBnBYW5U"; // <--- Insert API Key
                 string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={apiKey}";
 
                 // 4. Build Payload

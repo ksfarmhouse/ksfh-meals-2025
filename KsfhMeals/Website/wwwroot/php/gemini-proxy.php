@@ -4,7 +4,7 @@
 // 1. SECURE YOUR KEY HERE
 // Ideally, load this from an environment variable, but for a basic 
 // non-database app, keeping it here is safer than in the browser.
-$apiKey = 'AIzaSyDP0lD44rPajz-4HVROTYPPYIzq8u01EnE';
+$apiKey = 'AIzaSyB5SzhQCpkxWZuRyo31yER7USEYBnBYW5U';
 
 // 2. GET DATA FROM YOUR JAVASCRIPT
 // We expect the browser to send JSON data
