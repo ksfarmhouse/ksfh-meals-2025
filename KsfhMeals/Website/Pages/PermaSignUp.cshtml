@@ -107,6 +107,14 @@
                 </tbody>
             </table>
 
+            <!-- Save Button -->
+            <div class="text-center admin-action">
+                <input type="submit" value="Save" asp-page-handler="EditSignUp" class="btn-save" />
+            </div>
+            <p class="confirmation-message">
+                @Model.SaveConfirmationMessage
+            </p>
+
             <!-- Meal Status Info -->
             @if (Model.MemberToShow != null)
             {
@@ -119,14 +127,6 @@
                     <p><strong>Tardy:</strong> Will not be at lunch until 12</p>
                 </div>
             }
-
-            <!-- Save Button -->
-            <div class="text-center admin-action">
-                <input type="submit" value="Save" asp-page-handler="EditSignUp" class="btn-save" />
-            </div>
-            <p class="confirmation-message">
-                @Model.SaveConfirmationMessage
-            </p>
         }
     </div>
 </form>

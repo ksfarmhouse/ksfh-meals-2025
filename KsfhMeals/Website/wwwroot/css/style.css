@@ -49,8 +49,9 @@ table {
 .WeekdayTable th, .WeekdayTable td {
     padding: 4px 2px;
     font-size: clamp(10px, 2.5vw, 16px);
-    white-space: nowrap;
+    white-space: normal;
     text-align: center;
+    word-wrap: break-word;
 }
 
 /* Weekend table — proportional, centered, not stretched */
@@ -66,7 +67,7 @@ table {
 .WeekendTable th, .WeekendTable td {
     padding: 4px;
     font-size: clamp(14px, 2vw, 16px);
-    white-space: nowrap;
+    white-space: normal;
 }
 
 
@@ -228,7 +229,6 @@ Media / Phone Sizing
         font-size: 12px !important;
         padding: 4px 0px !important;
         letter-spacing: -0.5px !important;
-        white-space: nowrap !important;
     }
 }
 
