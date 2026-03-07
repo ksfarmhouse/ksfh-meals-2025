@@ -54,7 +54,9 @@
             </tbody>
         </table>
     </form>
+
     <p></p>
+
     <!-- Update & Remove Members Form -->
     <form method="post" asp-page-handler="Edit">
         <table>
@@ -75,13 +77,12 @@
                         <td>@m.FirstName</td>
                         <td>@m.ID</td>
                         <td>
-                            <select class="form-input" asp-for="SelectedEditStatus" name="@Model.ComboBoxNames[Model.Index]" asp-items="@Model.GetOtherStatus(m.HouseStatus)"></select>
+                            <select class="form-input" name="Member@(m.ID)" asp-items="@Model.GetOtherStatus(m.HouseStatus)"></select>
                         </td>
                         <td>
-                            <button type="submit" class="btn-save" asp-page-handler="Remove" name="RemoveMember" value="@m.ID.ToString()">Remove</button>
+                            <button type="submit" class="btn-save" asp-page-handler="Remove" name="RemoveMember" value="@m.ID">Remove</button>
                         </td>
                     </tr>
-                    Model.Index++;
                 }
             </tbody>
         </table>

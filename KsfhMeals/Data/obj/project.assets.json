@@ -57,21 +57,35 @@
         },
         "compile": {
           "lib/net8.0/System.Data.SqlClient.dll": {
-            "related": ".xml"
+            "related": ".xml;.xml"
+          },
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml;.xml"
           }
         },
         "runtime": {
           "lib/net8.0/System.Data.SqlClient.dll": {
-            "related": ".xml"
+            "related": ".xml;.xml"
+          },
+          "lib/net8.0/System.Data.SqlClient.dll": {
+            "related": ".xml;.xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
+          "buildTransitive/net8.0/_._": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll": {
             "assetType": "runtime",
             "rid": "unix"
+          },
+          "runtimes/unix/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/net8.0/System.Data.SqlClient.dll": {
+            "assetType": "runtime",
+            "rid": "win"
           },
           "runtimes/win/lib/net8.0/System.Data.SqlClient.dll": {
             "assetType": "runtime",
@@ -290,7 +304,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
