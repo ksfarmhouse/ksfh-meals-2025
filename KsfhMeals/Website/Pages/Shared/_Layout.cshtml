@@ -65,6 +65,11 @@
                     @* <li class="nav-item">
                         <a class="nav-link" asp-page="/Crew">Crew</a>
                     </li> *@
+                    <!-- Online Storage -->
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Get ID" ? "active" : "")"
+                           asp-area="" asp-page="/OnlineStorage">Online Storage</a>
+                    </li>
                     <!-- Treasurer -->
                     <li class="nav-item">
                         <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Treasurer" ? "active" : "")"

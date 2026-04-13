@@ -112,7 +112,6 @@ namespace Website.Pages
                     case MealStatus.Late: SelectedMembersLateLunch.Add(m); break;
                     case MealStatus.Early: SelectedMembersEarlyLunch.Add(m); break;
                     case MealStatus.In: LunchCookCount++; break;
-                    case MealStatus.Tardy: LunchTardyCount++; break;
                 }
 
                 // Dinner (no Tardy)

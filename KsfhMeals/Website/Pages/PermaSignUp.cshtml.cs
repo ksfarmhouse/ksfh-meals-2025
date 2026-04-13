@@ -87,7 +87,6 @@ namespace Website.Pages
                     "2" => MealStatus.Out,
                     "3" => MealStatus.Early,
                     "4" => MealStatus.Late,
-                    "5" => MealStatus.Tardy,
                     _ => MemberToShow.DefaultSignUp[i] // fallback
                 };
 
@@ -123,8 +122,7 @@ namespace Website.Pages
                 new SelectListItem { Value = "1", Text = "In", Selected = currentStatus == MealStatus.In },
                 new SelectListItem { Value = "2", Text = "Out", Selected = currentStatus == MealStatus.Out },
                 new SelectListItem { Value = "3", Text = "Early", Selected = currentStatus == MealStatus.Early },
-                new SelectListItem { Value = "4", Text = "Late", Selected = currentStatus == MealStatus.Late },
-                new SelectListItem { Value = "5", Text = "Tardy", Selected = currentStatus == MealStatus.Tardy }
+                new SelectListItem { Value = "4", Text = "Late", Selected = currentStatus == MealStatus.Late }
             };
         }
 

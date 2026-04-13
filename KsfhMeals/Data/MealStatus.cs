@@ -12,6 +12,5 @@ namespace Data
         Out,
         Early,
         Late,
-        Tardy
     }
 }

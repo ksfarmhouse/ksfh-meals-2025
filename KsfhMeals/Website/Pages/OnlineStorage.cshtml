@@ -1,0 +1,42 @@
+﻿@page
+@model Website.Pages.OnlineStorageModel
+@{
+    ViewData["Title"] = "Online Storage";
+    ViewData["ActivePage"] = "Online Storage";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<h1>Online Storage</h1>
+
+<form method="post">
+    <div>
+        <!-- Member ID input section -->
+        <h3>Enter ID</h3>
+        <input type="text" asp-for="ID" placeholder="ID" />
+        <input type="submit" value="Enter" />
+
+        @if (Model.ErrorMessage != null)
+        {
+            <p style="color: red;">@Model.ErrorMessage</p>
+        }
+
+        <!-- Instructions -->
+        <p class="text-center">
+            This is a link to our online resources. Click this link to be sent to the web server.
+        </p>
+        <p class="text-center" style="font-weight: bold;">
+            You can only access this while at the house. Your computer will say this site might not be safe, but it is and there is nothing to worry about.
+        </p>
+
+        @if (Model.MemberID != null)
+        {
+            <p class="text-center" style="margin-top: 20px;">
+                <a href="http://192.168.1.153:8080/" target="_blank">Click here to access Online Storage</a>
+            </p>
+        }
+
+    </div>
+</form>
